@@ -1,0 +1,33 @@
+<div class="questionnaire-content">
+
+  <mat-nav-list *ngIf="myQuestionnaire">
+    <h3 mat-header>{{myQuestionnaire.name}}</h3>
+  </mat-nav-list>
+
+  <mat-list-item *ngFor="let myQuestion of myQuestions">
+    <mat-list-item>
+      <h4>{{myQuestion.name}}</h4>
+    </mat-list-item>
+
+    <img mat-card-image src={{myQuestion.image}} onerror="this.src='data: image / gif; base64, R0lGODlhAQABAIAAAP /// wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw =='">
+    <!--<img mat-card-image src='assets/img/classpip-icon.svg'>-->
+    <mat-list-item *ngFor="let myAnswer of myQuestion.answer">
+      <h5>{{myAnswer.name}}</h5>
+    </mat-list-item>
+
+    <mat-list-item *ngFor="let myCorrectAnswer of myQuestion.correctAnswer">
+      <h5 id="h5">{{myCorrectAnswer.name}}</h5>
+    </mat-list-item>
+    <br><br><br>
+  </mat-list-item>
+
+  <ol>
+    <button mat-raised-button (click)="goToResultQuestionnaire()">{{ 'QUESTIONNAIRE.RESULTS' | translate }}</button>
+  </ol>
+
+</div>
+
+
+
+
+

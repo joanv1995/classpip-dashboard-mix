@@ -1,0 +1,13 @@
+.deleteQuestionnaire-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.deleteQuestionnaire-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteQuestionnaire-content > * {
+  width: 100%;
+}

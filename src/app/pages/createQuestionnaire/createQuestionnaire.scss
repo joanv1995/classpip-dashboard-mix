@@ -1,0 +1,14 @@
+.createQuestionnaire-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.createQuestionnaire-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.createQuestionnaire-content > * {
+  width: 100%;
+  
+}

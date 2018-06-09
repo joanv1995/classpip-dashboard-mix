@@ -1,0 +1,13 @@
+.createQuestionnaireTextArea2-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.createQuestionnaireTextArea2-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.createQuestionnaireTextArea2-content > * {
+  width: 100%;
+}

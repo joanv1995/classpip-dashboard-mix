@@ -1,0 +1,70 @@
+<div class="createQuestionnairePointsAssignment-content">
+
+
+
+  <h3 mat-header>Assignació de punts</h3>
+  <br>
+  <mat-slide-toggle color = "secondary"[(ngModel)]="device[i]" (change)="onChange($event)"  >Assignar puntos</mat-slide-toggle>
+    <mat-list *ngIf = "device[i]">
+
+        <mat-list-item>
+
+                <mat-form-field class="example-full-width">
+                  <input type="number" min="0"[(ngModel)]="a"  placeholder="Nota del qüestionar: 10" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+
+                </mat-form-field>
+
+
+        </mat-list-item>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input type="number" min="0" [(ngModel)]="b" placeholder="Nota del qüestionar: 9 - 9.99" aria-label="Number"[(ngModel)]="excelent" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+
+              </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input type="number" min="0" placeholder="Nota del qüestionar: 8 -8.99" [(ngModel)]="c"  aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+
+              </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input type="number" [(ngModel)]="d" min="0"  placeholder="Nota del qüestionar: 7 - 7'99" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+
+              </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input type="number" min="0" placeholder="Nota del qüestionar: 6 - 6'99" [(ngModel)]="e"  matInput [formControl]="myControl" [matAutocomplete]="auto" >
+
+              </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input type="number"min="0" [(ngModel)]="f" placeholder="Nota del qüestionar: 5 - 5'99" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+
+              </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input type="number" min="0" [(ngModel)]="g" placeholder="Nota del qüestionar: 0 - 4'99" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+
+              </mat-form-field>
+        </mat-list-item>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{ option }} Punts
+          </mat-option>
+        </mat-autocomplete>
+
+
+    </mat-list>
+
+
+
+    <br>
+
+    <button mat-raised-button (click)="createQuestionnaire()">{{ 'QUESTIONNAIRE.NEXT' | translate }}</button>
+    <button mat-raised-button (click)="cancel()">{{ 'QUESTIONNAIRE.BACK' | translate }}</button>

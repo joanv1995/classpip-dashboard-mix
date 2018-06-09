@@ -1,0 +1,13 @@
+.createQuestionnaireTest1-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.createQuestionnaireTest1-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.createQuestionnaireTest1-content > * {
+  width: 100%;
+}

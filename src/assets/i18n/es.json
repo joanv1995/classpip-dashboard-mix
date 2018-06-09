@@ -1,0 +1,82 @@
+{
+  "APP": {
+    "NAME": "Classpip",
+    "CANCEL": "Cancelar",
+    "LOGOUT": "Cerrar Sesión",
+    "LEGAL": "Aviso Legal",
+    "PRIVACY": "Privacidad",
+    "MARK": "Classpip ©2016-2017. Código licenciado bajo una licencia Apache-2"
+  },
+  "HOME": {
+    "TITLE": "Inicio",
+    "TWITTER": "TWITTER",
+    "FACEBOOK": "FACEBOOK",
+    "WEBSITE": "WEBSITE",
+    "LANGUAGE": "Escoge el idioma"
+  },
+  "LOGIN": {
+    "USERNAME": "Nombre de usuario",
+    "PASSWORD": "Contraseña",
+    "ROLE": "Rol",
+    "LOGIN": "Entrar",
+    "FORGOT": "Olvidé mi contraseña",
+    "REGISTER": "Necesito crear una nueva cuenta",
+    "TEACHER": "Docente",
+    "STUDENT": "Estudiante",
+    "SCHOOLADMIN": "Director de Escuela"
+  },
+  "GROUPS": {
+    "TITLE": "Grupos"
+  },
+  "QUESTIONNAIRES": {
+    "TITLE": "Cuestionarios",
+    "ID": "ID del Cuestionario:",
+    "DELETE": "Eliminar Cuestionario",
+    "CREATE": "Crear Nuevo Cuestionario"
+  },
+  "QUESTIONNAIRE": {
+    "RESULTS": "Resultados Cuestionario",
+    "ID_STUDENT": "ID Estudiante",
+    "STUDENT": "Estudiante",
+    "CORRECT_ANSWER": "Preguntas acertadas",
+    "NO_CORRECT_ANSWER": "Preguntas incorrectas",
+    "RESULT": "Resultado",
+    "QUESTIONS": "Preguntas",
+    "ANSWERS": "Respuestas",
+    "DELETE1": "¿Seguro que quieres eliminar el Cuestionario",
+    "DELETE2": "Eliminar",
+    "CANCEL": "Cancelar",
+    "QUESTION": "Pregunta",
+    "ANSWER1": "Respuesta 1",
+    "ANSWER2": "Respuesta 2",
+    "ANSWER3": "Respuesta 3",
+    "ANSWER4": "Respuesta 4",
+    "CORRECTANSWER": "Respuesta Correcta",
+    "NEXT": "Siguiente",
+    "BACK": "Atrás",
+    "ANSWER_OPEN": "Pregunta con respuesta abierta",
+    "QUESTION_IMAGE": "Pregunta con imagen",
+    "TEXT1": "Aquí está la flecha desplegable ^",
+    "TEXT2": "Tipo de Pregunta",
+    "URL": "URL de la imagen",
+    "TEXT3": "Max 40 caracteres",
+    "TEXT4": "Nombre del Cuestionario",
+    "TEXT5": "En segundos",
+    "TEXT6": "Tiempo total del Cuestionario",
+    "TEXT7": "Max 100 preguntas",
+    "TEXT8": "Número total de preguntas del Cuestionario",
+    "TEXT9": "Tipo de Cuestionario",
+    "TEXT10": "Respuesta abierta",
+    "TEXT11": "Respuesta múltiple",
+    "TEXT12": "Introducir la fecha"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "El nombre de usuario y/o la contraseña son inválidas.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "Tu correo no ha sido verificado aún, por favor, revisa tu correo.",
+    "INTERNAL_ERROR": "Ha ocurrido un error interno en el servidor. Por favor contacta con tu administrador. "
+  },
+  "POINTSBADGES":{
+    "TITLE": "Puntos e insignias "
+
+  }
+}

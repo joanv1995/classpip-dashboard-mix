@@ -1,0 +1,13 @@
+.questionnaires-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.questionnaires-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionnaires-content > * {
+  width: 100%;
+}

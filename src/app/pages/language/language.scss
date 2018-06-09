@@ -1,0 +1,16 @@
+.language-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.language-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.language-content > * {
+  width: 100%;
+}
+
+
+

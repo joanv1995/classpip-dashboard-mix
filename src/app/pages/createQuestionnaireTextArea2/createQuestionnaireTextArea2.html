@@ -1,0 +1,21 @@
+<div class="createQuestionnaireTextArea2-content">
+
+  <mat-form-field>
+    <textarea [(ngModel)]="question" matInput placeholder="{{ 'QUESTIONNAIRE.QUESTION' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(value)]="selected" placeholder="{{ 'QUESTIONNAIRE.TEXT2' | translate }}">
+      <mat-option value="textArea">{{ 'QUESTIONNAIRE.ANSWER_OPEN' | translate }}</mat-option>
+      <mat-option value="image">{{ 'QUESTIONNAIRE.QUESTION_IMAGE' | translate }}</mat-option>
+    </mat-select>
+    <mat-hint align="end">{{ 'QUESTIONNAIRE.TEXT1' | translate }}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="urlImage" matInput placeholder="{{ 'QUESTIONNAIRE.URL' | translate }}"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="createQuestionnaire()">{{ 'QUESTIONNAIRE.NEXT' | translate }}</button>
+
+</div>

@@ -1,0 +1,82 @@
+{
+  "APP": {
+    "NAME": "Classpip",
+    "CANCEL": "Cancel·lar",
+    "LOGOUT": "Tancar sessió",
+    "LEGAL": "Avís Legal",
+    "PRIVACY": "Privacitat",
+    "MARK": "Classpip ©2016-2017. Codi amb llicència sota una llicència Apache-2"
+  },
+  "HOME": {
+    "TITLE": "Inici",
+    "TWITTER": "TWITTER",
+    "FACEBOOK": "FACEBOOK",
+    "WEBSITE": "WEBSITE",
+    "LANGUAGE": "Escull l'idioma"
+  },
+  "LOGIN": {
+    "USERNAME": "Nom d'usuari",
+    "PASSWORD": "Contrasenya",
+    "ROLE": "Rol",
+    "LOGIN": "Entrar",
+    "FORGOT": "He oblidat la contrasenya",
+    "REGISTER": "Necessito crear un nou compte",
+    "TEACHER": "Docent",
+    "STUDENT": "Estudiant",
+    "SCHOOLADMIN": "Director d'escola"
+  },
+  "GROUPS": {
+    "TITLE": "Grups"
+  },
+  "QUESTIONNAIRES": {
+    "TITLE": "Qüestionaris",
+    "ID": "ID del Qüestionari:",
+    "DELETE": "Eliminar Qüestionaris",
+    "CREATE": "Crear nou Qüestionaris"
+  },
+  "QUESTIONNAIRE": {
+    "RESULTS": "Resultats Qüestionaris",
+    "ID_STUDENT": "ID Estudiant",
+    "STUDENT": "Estudiant",
+    "CORRECT_ANSWER": "Preguntes correctes",
+    "NO_CORRECT_ANSWER": "Preguntes incorrectes",
+    "RESULT": "Resultat",
+    "QUESTIONS": "Preguntes",
+    "ANSWERS": "Respostes",
+    "DELETE1": "Segur que vols eliminar el Qüestionari",
+    "DELETE2": "Eliminar",
+    "CANCEL": "Cancel·lar",
+    "QUESTION": "Pregunta",
+    "ANSWER1": "Resposta 1",
+    "ANSWER2": "Resposta 2",
+    "ANSWER3": "Resposta 3",
+    "ANSWER4": "Resposta 4",
+    "CORRECTANSWER": "Resposta Correcta",
+    "NEXT": "Següent",
+    "BACK": "Enrere",
+    "ANSWER_OPEN": "Pregunta amb resposta oberta",
+    "QUESTION_IMAGE": "Pregunta amb imatge",
+    "TEXT1": "Aquí està la fletxa desplegable ^",
+    "TEXT2": "Tipus de pregunta",
+    "URL": "URL de la imagen",
+    "TEXT3": "Max 40 caràcters",
+    "TEXT4": "Nom del Qüestionari",
+    "TEXT5": "En segons",
+    "TEXT6": "Temps total del Qüestionari",
+    "TEXT7": "Max 100 preguntes",
+    "TEXT8": "Nombre total de preguntes del Qüestionari",
+    "TEXT9": "Tipus de Qüestionari",
+    "TEXT10": "Resposta oberta",
+    "TEXT11": "Resposta múltiple",
+    "TEXT12": "Introduir la data"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "El nom d'usuari i/o contrasenya són invàlides.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "El teu correu no ha estat verificat encara, si us plau, revisa el teu correu.",
+    "INTERNAL_ERROR": "Hi ha hagut un error intern al servidor. Si us plau contacta amb el teu administrador. "
+  },
+  "POINTSBADGES":{
+    "TITLE": "Punts i insígnies "
+
+  }
+}

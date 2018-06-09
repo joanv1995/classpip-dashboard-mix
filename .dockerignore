@@ -1,0 +1,13 @@
+.git
+/dist
+/node_modules
+
+.editorconfig
+.gitattributes
+.gitignore
+.travis.yml
+coveralls.js
+deploy.sh
+karma.conf.js
+LICENSE
+tslint.json

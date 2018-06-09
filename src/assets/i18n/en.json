@@ -1,0 +1,83 @@
+{
+  "APP": {
+    "NAME": "Classpip",
+    "CANCEL": "Cancel",
+    "LOGOUT": "Logout",
+    "LEGAL": "Legal warning",
+    "PRIVACY": "Privacy",
+    "MARK": "Classpip ©2016-2017. Code licensed under an Apache-2 License"
+  },
+  "HOME": {
+    "TITLE": "Home",
+    "TWITTER": "TWITTER",
+    "FACEBOOK": "FACEBOOK",
+    "WEBSITE": "WEBSITE",
+    "LANGUAGE": "Choose the language"
+  },
+  "LOGIN": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "ROLE": "Rol",
+    "LOGIN": "Get in",
+    "FORGOT": "I forgot my password",
+    "REGISTER": "I need to create a new account",
+    "TEACHER": "Teacher",
+    "STUDENT": "Student",
+    "SCHOOLADMIN": "School principal"
+  },
+  "GROUPS": {
+    "TITLE": "Groups"
+  },
+  "QUESTIONNAIRES": {
+    "TITLE": "Questionnaires",
+    "ID": "Questionnaire ID:",
+    "DELETE": "Delete Questionnaire",
+    "CREATE": "Create New Questionnaire"
+  },
+  "QUESTIONNAIRE": {
+    "RESULTS": "Results Questionnaire",
+    "ID_STUDENT": "ID Student",
+    "STUDENT": "Student",
+    "CORRECT_ANSWER": "Successful questions",
+    "NO_CORRECT_ANSWER": "Incorrect questions",
+    "RESULT": "Result",
+    "QUESTIONS": "Questions",
+    "ANSWERS": "Answers",
+    "DELETE1": "Are you sure you want to delete the Questionnaire",
+    "DELETE2": "Delete",
+    "CANCEL": "Cancel",
+    "QUESTION": "Question",
+    "ANSWER1": "Answer 1",
+    "ANSWER2": "Answer 2",
+    "ANSWER3": "Answer 3",
+    "ANSWER4": "Answer 4",
+    "CORRECTANSWER": "Correct answer",
+    "NEXT": "Next",
+    "BACK": "Back",
+    "ANSWER_OPEN": "Question with open answer",
+    "QUESTION_IMAGE": "Question with image",
+    "TEXT1": "Here is the drop-down arrow ^",
+    "TEXT2": "Type of Question",
+    "URL": "Image URL",
+    "TEXT3": "Max 40 characters",
+    "TEXT4": "Questionnaire Name",
+    "TEXT5": "In seconds",
+    "TEXT6": "Total time of the Questionnaire",
+    "TEXT7": "Max 100 Questions",
+    "TEXT8": "Total number of questions in the Questionnaire",
+    "TEXT9": "Type of Questionnaire",
+    "TEXT10": "Open answer",
+    "TEXT11": "Multiple answer",
+    "TEXT12": "Enter date"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "The username and/or password are invalid.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "Your email has not been verified yet, please check your email.",
+    "INTERNAL_ERROR": "An internal error has occurred on the server. Please contact your administrator."
+  },
+  "POINTSBADGES":{
+    "TITLE": "Points and badges"
+
+  }
+
+}

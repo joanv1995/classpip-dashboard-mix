@@ -1,0 +1,47 @@
+<div class="questionnaireResults-content">
+  <html>
+    <head>
+      <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+      </style>
+    </head>
+    <body>
+      <table>
+      <tr>
+        <th>{{ 'QUESTIONNAIRE.ID_STUDENT' | translate }}</th>
+        <th>{{ 'QUESTIONNAIRE.STUDENT' | translate }}</th>
+        <th>{{ 'QUESTIONNAIRE.CORRECT_ANSWER' | translate }}</th>
+        <th>{{ 'QUESTIONNAIRE.NO_CORRECT_ANSWER' | translate }}</th>
+        <th>{{ 'QUESTIONNAIRE.RESULT' | translate }}</th>
+        <th>{{ 'QUESTIONNAIRE.QUESTIONS' | translate }}</th>
+        <th>{{ 'QUESTIONNAIRE.ANSWERS' | translate }}</th>
+      </tr>
+
+      <tr *ngFor="let resultQuestionnaire of resultsQuestionnaire">
+        <td>{{resultQuestionnaire.studentId}}</td>
+        <td>{{resultQuestionnaire.student._name}} {{resultQuestionnaire.student._surname}}</td>
+        <td>{{resultQuestionnaire.numAnswerCorrect}}</td>
+        <td>{{resultQuestionnaire.numAnswerNoCorrect}}</td>
+        <td>{{resultQuestionnaire.finalNote}}</td>
+        <td>{{resultQuestionnaire.numTotalQuestions}}</td>
+        <td>{{resultQuestionnaire.dataAnswers}}</td>
+      </tr>
+      </table>
+    </body>
+  </html>
+</div>
+

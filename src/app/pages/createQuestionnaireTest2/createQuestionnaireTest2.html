@@ -1,0 +1,29 @@
+<div class="createQuestionnaireTest2-content">
+
+  <mat-form-field>
+    <textarea [(ngModel)]="question" matInput placeholder="{{ 'QUESTIONNAIRE.QUESTION' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="answer1" matInput placeholder="{{ 'QUESTIONNAIRE.ANSWER1' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="answer2" matInput placeholder="{{ 'QUESTIONNAIRE.ANSWER2' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="answer3" matInput placeholder="{{ 'QUESTIONNAIRE.ANSWER3' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="answer4" matInput placeholder="{{ 'QUESTIONNAIRE.ANSWER4' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="correctAnswer" matInput placeholder="{{ 'QUESTIONNAIRE.CORRECTANSWER' | translate }}"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="createQuestionnaire()">{{ 'QUESTIONNAIRE.NEXT' | translate }}</button>
+
+</div>
