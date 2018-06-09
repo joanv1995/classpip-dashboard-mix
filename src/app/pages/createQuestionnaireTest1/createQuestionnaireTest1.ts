@@ -41,10 +41,16 @@ export class CreateQuestionnaireTest1Component implements OnInit {
 
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
-    this.stringData.push(data.stringData[0]);
-    this.stringData.push(data.stringData[1]);
-    this.numberData.push(data.numberData[0]);
-    this.numberData.push(data.numberData[1]);
+    for (var i =0; i < data.stringData.length; i++)
+    {
+      this.stringData.push(data.stringData[i]);
+
+    }
+    for (var i =0; i < data.numberData.length; i++)
+    {
+      this.numberData.push(data.numberData[i]);
+
+    }
     this.numberQuestions = data.numberData[1];
     this.num = data.num;
   }

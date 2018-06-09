@@ -134,12 +134,25 @@ export class QuestionnaireService {
 
     let url: string;
     url = AppConfig.QUESTIONNAIRE_URL;
-
-    let postParams = {
-      name: stringData[0],
-      date: stringData[1],
-      points: stringData[2],
-      teacherId: this.utilsService.currentUser.userId
+    let postParams;
+    if(stringData.length == 4)
+    {
+       postParams = {
+        name: stringData[0],
+        date: stringData[1],
+        groupid: stringData[2],
+        points: stringData[3],
+        teacherId: this.utilsService.currentUser.userId
+      }
+    }
+    else
+    {
+       postParams = {
+        name: stringData[0],
+        date: stringData[1],
+        points: stringData[2],
+        teacherId: this.utilsService.currentUser.userId
+      }
     }
 
     return this.http.post(url, postParams, options)

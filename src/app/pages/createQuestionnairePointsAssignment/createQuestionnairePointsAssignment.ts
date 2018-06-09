@@ -54,12 +54,18 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
 
     this.selectedType = data.stringSelected;
-    this.stringData.push(data.stringData[0]);
-    this.stringData.push(data.stringData[1]);
-    this.numberData.push(data.numberData[0]);
-    this.numberData.push(data.numberData[1]);
-    this.numberQuestions = data.numberData[1];
-    this.num = data.num;
+
+    for (var i =0; i < data.stringData.length; i++)
+    {
+      this.stringData.push(data.stringData[i]);
+
+    }
+    for (var i =0; i < data.numberData.length; i++)
+    {
+      this.numberData.push(data.numberData[i]);
+
+    }
+
 
     for(this.ind=0;this.ind<=100;this.ind++)
     {

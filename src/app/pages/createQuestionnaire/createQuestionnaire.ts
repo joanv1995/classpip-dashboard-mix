@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
@@ -18,6 +18,8 @@ export class CreateQuestionnaireComponent implements OnInit {
 
   public questionnaires: Array<Questionnaire>;
   public myQuestionnaire: Questionnaire;
+  public groups: Array<Group>;
+  public groupselected: string;
   public stringData = [];
   public numberData = [];
 
@@ -33,8 +35,10 @@ export class CreateQuestionnaireComponent implements OnInit {
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
+    public groupService: GroupService,
     public questionnaireService: QuestionnaireService,
     public dialog: MatDialog,
+    public snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<CreateQuestionnaireComponent>,
     public dialogRef1: MatDialogRef<CreateQuestionnairePointsAssignmentComponent>,
 
@@ -59,6 +63,15 @@ export class CreateQuestionnaireComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
+        this.groupService.getMyGroups().subscribe(
+          ((groups: Array<Group>) => {
+            this.groups = groups;
+            this.loadingService.hide();
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
+          }));
     }
   }
 
@@ -68,12 +81,23 @@ export class CreateQuestionnaireComponent implements OnInit {
 
   createQuestionnaire(): void {
 
+
+
     this.stringData.push(this.name);
     this.stringData.push(this.date);
     this.numberData.push(this.time);
     this.numberData.push(this.number);
+    this.snackbar.open(this.groupselected);
+
+    if(this.groupselected != "none")
+
+    {
+
+      this.stringData.push(this.groupselected);
+      this.snackbar.open(this.groupselected);
 
 
+    }
 
     let dialogRef1 = this.dialog.open(CreateQuestionnairePointsAssignmentComponent, {
     height: '600px',
@@ -88,52 +112,5 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.cancel();
 
 
-
-    /*
-    switch (this.selected) {
-          case 'optionRespuestaMultiple':
-             /*Save new Questionnaire
-            this.questionnaireService.saveQuestionnaire(this.stringData).subscribe(
-              ((value: Questionnaire) => this.myQuestionnaire = value),
-            ((error: Questionnaire) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-
-            let dialogRef1 = this.dialog.open(CreateQuestionnaireTest1Component, {
-            height: '600px',
-            width: '700px',
-            data: {stringData: this.stringData, numberData: this.numberData, num: this.num}
-            });
-
-            dialogRef1.afterClosed().subscribe(result => {
-              this.result = result;
-              this.ngOnInit();
-            });
-            this.cancel();
-            break;
-          case 'optionRespuestaAbierta':
-                        /*Save new Questionnaire
-            this.questionnaireService.saveQuestionnaire(this.stringData).subscribe(
-              ((value: Questionnaire) => this.myQuestionnaire = value),
-            ((error: Questionnaire) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-            let dialogRef2 = this.dialog.open(CreateQuestionnaireTextArea1Component, {
-              height: '600px',
-              width: '700px',
-              data: {stringData: this.stringData, numberData: this.numberData, num: this.num}
-            });
-
-            dialogRef2.afterClosed().subscribe(result => {
-              this.result = result;
-              this.ngOnInit();
-            });
-            this.cancel();
-            break;
-          default:
-            break;
-        }*/
   }
 }

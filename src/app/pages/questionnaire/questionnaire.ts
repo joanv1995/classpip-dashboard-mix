@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { Login, Group, Role, Questionnaire, Question, Answer } from '../../shared/models/index';
@@ -23,6 +23,7 @@ export class QuestionnaireComponent implements OnInit {
   public myAnswers2: Array<Answer>;
   public myAnswers3: Array<Answer>;
   public myAnswers4: Array<Answer>;
+  public snackbar: MatSnackBar;
   private returnUrl: string;
   public questionnaireId: string;
   private sub: any;
@@ -62,6 +63,9 @@ export class QuestionnaireComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
+
+
+
 
       this.questionnaireService.getMyQuestionnaireQuestions(this.questionnaireId).subscribe(
         ((questions: Array<Question>) => {
