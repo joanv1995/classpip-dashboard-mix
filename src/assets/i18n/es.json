@@ -76,7 +76,13 @@
     "INTERNAL_ERROR": "Ha ocurrido un error interno en el servidor. Por favor contacta con tu administrador. "
   },
   "POINTSBADGES":{
-    "TITLE": "Puntos e insignias "
+    "TITLE": "Puntos e insignias ",
+    "POINTSTITLE": "Puntos",
+    "BADGESTITLE": "Insignias",
+    "CREATEPOINT": "Crear punto",
+    "CREATEBADGE": "Crear insignia",
+    "POINTID": "Id. Punto: ",
+    "BADGEID": "Id. Insignia: "
 
   }
 }

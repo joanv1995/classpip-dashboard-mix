@@ -1,0 +1,34 @@
+<div class="createPoint-content">
+
+    <mat-form-field hintLabel="Max 40 caràcters">
+      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom del Punt">
+      <mat-hint align="end">{{input.value?.length || 0}}/40</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field hintLabel="Max. 1 xifra (Escriure 1 per defecte)">
+      <input matInput #input maxlength="1" [(ngModel)]="value" placeholder="Valor del Punt">
+      <mat-hint align="end"></mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field hintLabel="Copiar enllaç .jpg">
+      <input matInput [(ngModel)]="image" placeholder="Imatge del Punt">
+      <mat-hint align="end"></mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-card class="example-image" *ngIf = "image">
+      <mat-card-subtitle >Imatge del nou Punt</mat-card-subtitle>
+        <div mat-card-avatar class="example-image"></div>
+
+        <img mat-card-lg-image src="{{image}}">
+    </mat-card>
+
+
+    <br>
+
+    <button mat-raised-button (click)="createPoint()">Guardar nou Punt</button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
+
+  </div>

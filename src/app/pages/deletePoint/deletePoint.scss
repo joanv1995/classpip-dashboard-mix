@@ -1,0 +1,13 @@
+.deletePoint-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.deletePoint-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.deletePoint-content> * {
+  width: 100%;
+}

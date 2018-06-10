@@ -76,8 +76,13 @@
     "INTERNAL_ERROR": "An internal error has occurred on the server. Please contact your administrator."
   },
   "POINTSBADGES":{
-    "TITLE": "Points and badges"
-
+    "TITLE": "Points and badges",
+    "POINTSTITLE": "Points",
+    "BADGESTITLE": "Badges",
+    "CREATEPOINT": "Create point",
+    "CREATEBADGE": "Create badge",
+    "POINTID": "Id. Point: ",
+    "BADGEID": "Id. Badge: "
   }
 
 }

@@ -14,8 +14,7 @@ export class Point {
     this._name = name;
     this._value = value;
     this._image = image;
-    this._schoolId = schoolId;
-    this._teacherId = teacherId;
+
 
   }
 
@@ -28,8 +27,7 @@ export class Point {
       result.name = object.name;
       result.value = object.value;
       result.image = object.image;
-      result.schoolId = object.schoolId;
-      result.teacherId = object.teacherId;
+
     }
     return result;
   }
@@ -76,22 +74,6 @@ export class Point {
 
   public set value(value: number) {
     this._value = value;
-  }
-
-  public get teacherId(): number {
-    return this._teacherId;
-  }
-
-  public set teacherId(value: number) {
-    this._teacherId = value;
-  }
-
-  public get schoolId(): number {
-    return this._schoolId;
-  }
-
-  public set schoolId(value: number) {
-    this._schoolId = value;
   }
 
 }

@@ -115,6 +115,8 @@ export class CreateQuestionnaireTest1Component implements OnInit {
       this.dialogRef.afterClosed().subscribe(result => {
       this.result = result;
       this.ngOnInit();
+
+
       });
         this.cancel();
     }

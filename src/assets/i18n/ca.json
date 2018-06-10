@@ -76,7 +76,13 @@
     "INTERNAL_ERROR": "Hi ha hagut un error intern al servidor. Si us plau contacta amb el teu administrador. "
   },
   "POINTSBADGES":{
-    "TITLE": "Punts i insígnies "
+    "TITLE": "Punts i insígnies ",
+    "POINTSTITLE": "Punts",
+    "BADGESTITLE": "Insígnies",
+    "CREATEPOINT": "Crear punt",
+    "CREATEBADGE": "Crear insígnia",
+    "POINTID": "Id. Punt: ",
+    "BADGEID": "Id. Insígnia: "
 
   }
 }

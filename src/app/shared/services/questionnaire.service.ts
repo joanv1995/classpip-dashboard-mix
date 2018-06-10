@@ -91,6 +91,7 @@ export class QuestionnaireService {
 
     const url: string = this.utilsService.getMyUrl() + AppConfig.QUESTIONNAIRES_URL;
 
+
     return this.http.get(url, options)
       .map((response: Response, index: number) => Questionnaire.toObjectArray(response.json()));
   }

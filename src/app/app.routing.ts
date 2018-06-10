@@ -17,6 +17,13 @@ import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTe
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
 import { CreateQuestionnaireTextArea1Component } from './pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
 import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnaireTextArea2/createQuestionnaireTextArea2';
+import { CreatePointComponent } from './pages/createPoint/createPoint';
+import { DeletePointComponent } from './pages/deletePoint/deletePoint';
+import { CreateBadgeComponent } from './pages/createBadge/createBadge';
+import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
+
+
+
 import { LanguageComponent } from './pages/language/language';
 
 const appRoutes: Routes = [
@@ -36,6 +43,12 @@ const appRoutes: Routes = [
   { path: 'createQuestionnaireTest2', component: CreateQuestionnaireTest2Component, canActivate: [AuthGuard] },
   { path: 'createQuestionnaireTextArea1', component: CreateQuestionnaireTextArea1Component, canActivate: [AuthGuard] },
   { path: 'createQuestionnaireTextArea2', component: CreateQuestionnaireTextArea2Component, canActivate: [AuthGuard] },
+  { path: 'createPoint', component: CreatePointComponent, canActivate: [AuthGuard] },
+
+  { path: 'deletePoint', component: DeletePointComponent, canActivate: [AuthGuard] },
+  { path: 'createBadge', component: CreateBadgeComponent, canActivate: [AuthGuard]},
+  { path: 'deleteBadge', component: DeleteBadgeComponent, canActivate: [AuthGuard] },
+
   { path: 'language', component: LanguageComponent, canActivate: [AuthGuard] },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
 

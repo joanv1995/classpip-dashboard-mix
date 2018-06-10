@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { UtilsService } from './utils.service';
 import { AppConfig } from '../../app.config';
@@ -19,6 +20,8 @@ export class PointService {
 
   constructor(
     public http: Http,
+    public translateService: TranslateService,
+
     public utilsService: UtilsService) { }
 
   /**
@@ -108,6 +111,30 @@ export class PointService {
         return response;
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+  public savePoint(name: string, value: number, image: string): Observable<Point> {
+
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    let url: string;
+    url = AppConfig.POINT_URL;
+    let postParams = {
+        name: name,
+        value: value,
+        image: image,
+        teacherId: this.utilsService.currentUser.userId,
+        schoolId: this.utilsService.currentSchool.id
+      }
+
+    return this.http.post(url, postParams, options)
+      .map(response => {
+
+        return Point.toObject(response.json());
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
   }
 
 

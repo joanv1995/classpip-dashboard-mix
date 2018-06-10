@@ -54,7 +54,7 @@ export class CreateQuestionnaireComponent implements OnInit {
     if (this.utilsService.role === Role.TEACHER) {
 
       this.loadingService.show();
-      this.questionnaireService.getQuestionnaires().subscribe(
+     /* this.questionnaireService.getQuestionnaires().subscribe(
         ((questionnaires: Array<Questionnaire>) => {
           this.questionnaires = questionnaires;
           this.loadingService.hide();
@@ -62,7 +62,7 @@ export class CreateQuestionnaireComponent implements OnInit {
         ((error: Response) => {
           this.loadingService.hide();
           this.alertService.show(error.toString());
-        }));
+        }));*/
         this.groupService.getMyGroups().subscribe(
           ((groups: Array<Group>) => {
             this.groups = groups;
@@ -87,14 +87,14 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.stringData.push(this.date);
     this.numberData.push(this.time);
     this.numberData.push(this.number);
-    this.snackbar.open(this.groupselected);
+
 
     if(this.groupselected != "none")
 
     {
 
       this.stringData.push(this.groupselected);
-      this.snackbar.open(this.groupselected);
+
 
 
     }

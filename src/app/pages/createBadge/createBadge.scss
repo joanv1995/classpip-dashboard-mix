@@ -1,0 +1,17 @@
+.createBadge-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.createBadge-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.createBadge-content > * {
+  width: 100%;
+  
+}
+.example-image {
+  max-width: 150px;
+}

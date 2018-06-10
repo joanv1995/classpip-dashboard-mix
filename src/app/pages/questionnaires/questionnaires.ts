@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import { Login, Group, Role, Questionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
@@ -24,6 +24,7 @@ export class QuestionnairesComponent implements OnInit {
   resultCreate: number;
 
   constructor(
+    public snackbar: MatSnackBar,
     public route: ActivatedRoute,
     public router: Router,
     public alertService: AlertService,
@@ -37,12 +38,9 @@ export class QuestionnairesComponent implements OnInit {
   }
 
  public ngOnInit(): void {
-
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/questionnaire';
-
     if (this.utilsService.role === Role.TEACHER) {
-
-      this.loadingService.show();
+      //this.loadingService.show();
       this.questionnaireService.getQuestionnaires().subscribe(
         ((questionnaires: Array<Questionnaire>) => {
           this.questionnaires = questionnaires;
@@ -53,13 +51,15 @@ export class QuestionnairesComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
     }
+    this.loadingService.hide();
+
   }
 
  public openDialog(): void {
     let dialogRef = this.dialog.open(DeleteQuestionnaireComponent, {
       height: '400px',
       width: '600px',
-      data: { name: this.name, animal: this.animal }
+      data: { name: this.name, animal: this.animal}
     });
 
     dialogRef.afterClosed().subscribe(result => {

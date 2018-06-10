@@ -4,8 +4,7 @@ export class Badge {
   private _name: string;
   private _value: number;
   private _image: string;
-  private _schoolId: number;
-  private _teacherId: number;
+
 
 
   constructor(name?: string, value?: number, image?: string, schoolId?: number,
@@ -13,11 +12,10 @@ export class Badge {
     this._name = name;
     this._value = value;
     this._image = image;
-    this._schoolId = schoolId;
-    this._teacherId = teacherId;
-        
+
+
   }
-    
+
   /* tslint:disable */
   static toObject(object: any): Badge {
     /* tslint:enable */
@@ -27,8 +25,7 @@ export class Badge {
       result.name = object.name;
       result.value = object.value;
       result.image = object.image;
-      result.schoolId = object.schoolId;
-      result.teacherId = object.teacherId;
+
     }
     return result;
   }
@@ -77,20 +74,6 @@ export class Badge {
     this._value = value;
   }
 
-  public get teacherId(): number {
-    return this._teacherId;
-  }
 
-  public set teacherId(value: number) {
-    this._teacherId = value;
-  }
-
-  public get schoolId(): number {
-    return this._schoolId;
-  }
-
-  public set schoolId(value: number) {
-    this._schoolId = value;
-  }
 
 }

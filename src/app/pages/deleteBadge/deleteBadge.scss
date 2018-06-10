@@ -1,0 +1,13 @@
+.deleteBadge-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.deleteBadge-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteBadge-content > * {
+  width: 100%;
+}
