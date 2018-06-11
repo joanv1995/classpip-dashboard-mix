@@ -19,3 +19,8 @@ export * from './point';
 export * from './badge';
 export * from './pointRelation';
 export * from './badgeRelation';
+export * from './card';
+export * from './collectionCard';
+
+
+

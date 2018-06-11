@@ -1,0 +1,16 @@
+<div class="collection-content">
+    <mat-nav-list *ngIf="collections">
+        <h3 mat-subheader>Coleccions</h3>
+        <mat-list-item *ngFor="let collectionCard  of collections" >
+          <mat-icon mat-list-icon>note</mat-icon>
+
+
+              <h4 mat-line>{{collectionCard.name}}</h4>
+
+
+
+        </mat-list-item>
+        <mat-progress-bar mode="buffer"></mat-progress-bar>
+      </mat-nav-list>
+
+  </div>

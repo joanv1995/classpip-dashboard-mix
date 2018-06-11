@@ -7,6 +7,8 @@ import { LoginComponent } from './pages/login/login';
 import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
+import { CollectionsComponent } from './pages/collections/collections';
+
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
 import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
@@ -32,6 +34,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
   { path: 'pointsbadges', component: PointsBadgesComponent, canActivate: [AuthGuard] },
+  { path: 'collections', component: CollectionsComponent, canActivate: [AuthGuard] },
+
   { path: 'questionnaires', component: QuestionnairesComponent, canActivate: [AuthGuard] },
   { path: 'questionnaire/:id', component: QuestionnaireComponent, canActivate: [AuthGuard] },
   { path: 'questionnaireResults/:id', component: QuestionnaireResultsComponent, canActivate: [AuthGuard] },

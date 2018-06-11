@@ -18,6 +18,8 @@ import { LoginComponent } from './pages/login/login';
 import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
+import { CollectionsComponent } from './pages/collections/collections';
+
 
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
@@ -47,7 +49,7 @@ import { LoadingComponent } from './shared/loading/loading';
 import {
   UtilsService, LoginService, LoadingService, AlertService,
   SchoolService, AvatarService, UserService, GroupService,
-  GradeService, MatterService, QuestionnaireService, PointService, PointRelationService, BadgeService, BadgeRelationService
+  GradeService, MatterService, QuestionnaireService,CollectionService, PointService, PointRelationService, BadgeService, BadgeRelationService
 } from './shared/services/index';
 
 // rxjs
@@ -73,6 +75,7 @@ export function createTranslateLoader(http: Http) {
     HomeComponent,
     GroupsComponent,
     PointsBadgesComponent,
+    CollectionsComponent,
     CreateQuestionnairePointsAssignmentComponent,
     QuestionnairesComponent,
     QuestionnaireComponent,
@@ -125,7 +128,9 @@ export function createTranslateLoader(http: Http) {
     PointService,
     PointRelationService,
     BadgeService,
-    BadgeRelationService
+    BadgeRelationService,
+    CollectionService
+
   ],
   bootstrap: [AppComponent]
 })

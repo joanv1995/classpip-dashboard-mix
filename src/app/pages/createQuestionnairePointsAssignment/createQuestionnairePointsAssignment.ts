@@ -66,7 +66,7 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
 
     }
 
-
+    this.num = data.num;
     for(this.ind=0;this.ind<=100;this.ind++)
     {
       this.options.push(this.ind);

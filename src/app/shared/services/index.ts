@@ -13,3 +13,4 @@ export * from './badgeRelation.service';
 export * from './badge.service';
 export * from './pointRelation.service';
 export * from './point.service';
+export * from './collection.service';

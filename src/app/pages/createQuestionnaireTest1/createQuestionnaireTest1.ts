@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Question } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
@@ -36,6 +36,7 @@ export class CreateQuestionnaireTest1Component implements OnInit {
     public loadingService: LoadingService,
     public questionnaireService: QuestionnaireService,
     public dialog: MatDialog,
+    public snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<CreateQuestionnaireTest1Component>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -56,6 +57,7 @@ export class CreateQuestionnaireTest1Component implements OnInit {
   }
 
   ngOnInit(): void {
+    this.snackbar.open(this.numberData[1]+this.num)
 
     if (this.utilsService.role === Role.TEACHER) {
 

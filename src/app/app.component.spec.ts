@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home';
 import { LoginComponent } from './pages/login/login';
 import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
+import { CollectionsComponent } from './pages/collections/collections';
 
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
@@ -41,7 +42,9 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AuthGuard } from './shared/auth/auth.guard';
 import {
   AvatarService, AlertService, LoadingService, SchoolService, LoginService,
-  UserService, GradeService, GroupService, UtilsService, MatterService, QuestionnaireService, PointService, PointRelationService, BadgeService, BadgeRelationService
+  UserService, GradeService, GroupService, UtilsService,
+  MatterService, QuestionnaireService, PointService,
+   PointRelationService, BadgeService, BadgeRelationService, CollectionService
 } from './shared/services/index';
 
 export function createTranslateLoader(http: Http) {
@@ -59,6 +62,7 @@ describe('AppComponent', () => {
         LoginComponent,
         HomeComponent,
         GroupsComponent,
+        CollectionsComponent,
         QuestionnairesComponent,
         QuestionnaireComponent,
         QuestionnaireResultsComponent,
