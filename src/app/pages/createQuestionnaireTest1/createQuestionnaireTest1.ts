@@ -57,7 +57,6 @@ export class CreateQuestionnaireTest1Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this.snackbar.open(this.numberData[1]+this.num)
 
     if (this.utilsService.role === Role.TEACHER) {
 

@@ -1,13 +1,14 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import {FormControl, FormsModule} from '@angular/forms';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Question } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
 import { CreateQuestionnaireTest1Component } from '../../pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTextArea1Component } from '../../pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
+import { CreateQuestionnaireBadgesAssignmentComponent } from '../../pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
 
 @Component({
   /*selector: 'app-createQuestionnaireTest1',*/
@@ -42,6 +43,7 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
   public ind: number;
   public selectedType: string;
   constructor(
+    public snackbar: MatSnackBar,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -66,7 +68,7 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
 
     }
 
-    this.num = data.num;
+    this.num = data.num
     for(this.ind=0;this.ind<=100;this.ind++)
     {
       this.options.push(this.ind);
@@ -77,12 +79,10 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
   }
 
   onChange(value) {
-  if (value.checked == true) {
+  if (value.checked === true) {
     this.assigned = 1;
-    console.log(1);
   } else {
     this.assigned = 0;
-    console.log(0);
   }
 };
   ngOnInit(): void {
@@ -131,58 +131,21 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
 
     this.stringData.push(this.points);
     }
-    switch (this.selectedType)
-     {
-      case 'optionRespuestaMultiple':
-         /*Save new Questionnaire*/
-        this.questionnaireService.saveQuestionnaire(this.stringData).subscribe(
-          ((value: Questionnaire) => this.myQuestionnaire = value),
-        ((error: Questionnaire) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
 
-        let dialogRef1 = this.dialog.open(CreateQuestionnaireTest1Component, {
-        height: '600px',
-        width: '700px',
-        data: {stringData: this.stringData, numberData: this.numberData, num: this.num}
-        });
+    let dialogRef1 = this.dialog.open(CreateQuestionnaireBadgesAssignmentComponent, {
+      height: '600px',
+      width: '700px',
+      data: {stringSelected: this.selectedType, stringData: this.stringData, numberData: this.numberData, num: this.num}
+      });
 
-        dialogRef1.afterClosed().subscribe(result => {
-          this.result = result;
-          this.ngOnInit();
-        });
-        this.cancel();
-        break;
+      dialogRef1.afterClosed().subscribe(result => {
+        this.result = result;
+        this.ngOnInit();
+      });
+      this.cancel();
 
-      case 'optionRespuestaAbierta':
-                    /*Save new Questionnaire*/
-        this.questionnaireService.saveQuestionnaire(this.stringData).subscribe(
-          ((value: Questionnaire) => this.myQuestionnaire = value),
-        ((error: Questionnaire) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-        let dialogRef2 = this.dialog.open(CreateQuestionnaireTextArea1Component, {
-          height: '600px',
-          width: '700px',
-          data: {stringData: this.stringData, numberData: this.numberData, num: this.num}
-        });
-
-        dialogRef2.afterClosed().subscribe(result => {
-          this.result = result;
-          this.ngOnInit();
-        });
-        this.cancel();
-        break;
-      default:
-        break;
     }
 
-
-
-
-}
   cancel(): void {
     this.dialogRef.close();
   }

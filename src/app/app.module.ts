@@ -27,6 +27,8 @@ import { QuestionnaireResultsComponent } from './pages/questionnaireResults/ques
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
 import { CreateQuestionnairePointsAssignmentComponent } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
+import { CreateQuestionnaireBadgesAssignmentComponent} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
+
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
 import { CreateQuestionnaireTextArea1Component } from './pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
@@ -77,6 +79,7 @@ export function createTranslateLoader(http: Http) {
     PointsBadgesComponent,
     CollectionsComponent,
     CreateQuestionnairePointsAssignmentComponent,
+    CreateQuestionnaireBadgesAssignmentComponent,
     QuestionnairesComponent,
     QuestionnaireComponent,
     QuestionnaireResultsComponent,

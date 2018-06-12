@@ -98,7 +98,6 @@ export class CreateQuestionnaireComponent implements OnInit {
 
 
     }
-
     let dialogRef1 = this.dialog.open(CreateQuestionnairePointsAssignmentComponent, {
     height: '600px',
     width: '700px',

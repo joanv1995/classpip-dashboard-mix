@@ -127,7 +127,7 @@ export class QuestionnaireService {
         return Observable.throw(errMsg);
     }
 
-  public saveQuestionnaire(stringData: Array<string>): Observable<Questionnaire> {
+  public saveQuestionnaire(stringData: Array<string>, badgesArray: Array<string>): Observable<Questionnaire> {
 
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
@@ -136,6 +136,30 @@ export class QuestionnaireService {
     let url: string;
     url = AppConfig.QUESTIONNAIRE_URL;
     let postParams;
+    if(badgesArray[0] == "0" )
+    {
+      if(stringData.length == 4)
+      {
+        postParams = {
+          name: stringData[0],
+          date: stringData[1],
+          groupid: stringData[2],
+          points: stringData[3],
+          teacherId: this.utilsService.currentUser.userId,
+
+        }
+      }
+      else
+      {
+        postParams = {
+          name: stringData[0],
+          date: stringData[1],
+          points: stringData[2],
+          teacherId: this.utilsService.currentUser.userId
+        }
+      }
+  }
+  else{
     if(stringData.length == 4)
     {
        postParams = {
@@ -143,7 +167,9 @@ export class QuestionnaireService {
         date: stringData[1],
         groupid: stringData[2],
         points: stringData[3],
-        teacherId: this.utilsService.currentUser.userId
+        badges: badgesArray,
+        teacherId: this.utilsService.currentUser.userId,
+
       }
     }
     else
@@ -152,9 +178,16 @@ export class QuestionnaireService {
         name: stringData[0],
         date: stringData[1],
         points: stringData[2],
+        badges: badgesArray,
+
         teacherId: this.utilsService.currentUser.userId
       }
     }
+
+  }
+
+
+
 
     return this.http.post(url, postParams, options)
       .map(response => {
