@@ -1,0 +1,17 @@
+.createCard-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.createCard-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.createCard-content > * {
+  width: 100%;
+  
+}
+.example-image {
+  max-width: 150px;
+}

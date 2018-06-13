@@ -8,8 +8,11 @@ import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
-
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
+
+import { CollectionComponent } from './pages/collection/collection';
+import { CreateCardComponent } from './pages/createCard/createCard';
+
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
 import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
@@ -29,6 +32,8 @@ import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 
 
 import { LanguageComponent } from './pages/language/language';
+import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
+import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 
 const appRoutes: Routes = [
 
@@ -37,6 +42,12 @@ const appRoutes: Routes = [
   { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
   { path: 'pointsbadges', component: PointsBadgesComponent, canActivate: [AuthGuard] },
   { path: 'collections', component: CollectionsComponent, canActivate: [AuthGuard] },
+  { path: 'collection/:id', component: CollectionComponent, canActivate: [AuthGuard] },
+  { path: 'createCollection', component: CreateCollectionComponent, canActivate: [AuthGuard] },
+
+  { path: 'createCard', component: CreateCardComponent, canActivate: [AuthGuard] },
+  { path: 'deleteCard', component: DeleteCardComponent, canActivate: [AuthGuard] },
+
 
   { path: 'questionnaires', component: QuestionnairesComponent, canActivate: [AuthGuard] },
   { path: 'questionnaire/:id', component: QuestionnaireComponent, canActivate: [AuthGuard] },

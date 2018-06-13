@@ -2,7 +2,7 @@
     <mat-nav-list *ngIf="points">
         <h3 mat-subheader>{{ 'POINTSBADGES.POINTSTITLE' | translate }}</h3>
         <mat-list-item *ngFor="let point of points" >
-          <mat-icon mat-list-icon>note</mat-icon>
+            <img matListAvatar src={{point.image}}>
           <h4 mat-line>{{point.name}}</h4>
           <p mat-line>{{ 'POINTSBADGES.POINTID' | translate }}{{point.id}}</p>
         </mat-list-item>
@@ -23,8 +23,8 @@
       <mat-nav-list *ngIf="badges">
           <h3 mat-subheader>{{ 'POINTSBADGES.BADGESTITLE' | translate }}</h3>
           <mat-list-item *ngFor="let badge of badges" >
-            <mat-icon mat-list-icon>note</mat-icon>
-            <h4 mat-line>{{badge.name}}</h4>
+              <img matListAvatar src={{badge.image}}>
+              <h4 mat-line>{{badge.name}}</h4>
             <p mat-line>{{ 'POINTSBADGES.BADGEID' | translate }}{{badge.id}}</p>
           </mat-list-item>
           <mat-progress-bar mode="buffer"></mat-progress-bar>

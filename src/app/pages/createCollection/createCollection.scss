@@ -1,0 +1,17 @@
+.createCollection-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.createCollection-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.createCollection-content > * {
+  width: 100%;
+  
+}
+.example-image {
+  max-width: 150px;
+}

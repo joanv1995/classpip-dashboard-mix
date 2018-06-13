@@ -7,24 +7,27 @@ import { AppConfig } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoadingService, UtilsService, GroupService, AlertService, CollectionService, SchoolService } from '../../shared/services/index';
-import { CreateCollectionComponent } from '../createCollection/createCollection';
+import { CreateCardComponent } from '../createCard/createCard';
+import { DeleteCardComponent } from '../deleteCard/deleteCard';
 
 
 
 
 @Component({
-  selector: 'app-collections',
-  templateUrl: './collections.html',
-  styleUrls: ['./collections.scss']
+  //selector: 'app-collections',
+  templateUrl: './collection.html',
+  styleUrls: ['./collection.scss']
 })
-export class CollectionsComponent implements OnInit {
+export class CollectionComponent implements OnInit {
 
   public returnUrl: string;
+  public result: number;
+  public collectionCards: Array<Card>;
+  public cardId: string;
 
-  public collections: Array<CollectionCard>;
+  public sub: any;
+  public collectionCardId: string;
 
-
-  public resultCreate: string;
 
   constructor(
     public route: ActivatedRoute,
@@ -47,11 +50,14 @@ export class CollectionsComponent implements OnInit {
 
    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/collection';
 
+   this.sub = this.route.params.subscribe(params => {
+    this.collectionCardId = params['id'];
+  });
 
     if (this.utilsService.role === Role.TEACHER) {
-      this.collectionService.getCollections().subscribe(
-        ((collections: Array<CollectionCard>) => {
-          this.collections = collections;
+      this.collectionService.getCollectionDetails(this.collectionCardId).subscribe(
+        ((collectionCards: Array<Card>) => {
+          this.collectionCards = collectionCards;
           this.loadingService.hide();
 
 
@@ -63,52 +69,44 @@ export class CollectionsComponent implements OnInit {
 
 
 
-    }
-  }
-    goToCollectionDetails(collectionCard) {
-
-
-      this.router.navigate([this.returnUrl, collectionCard.id]);
 
     }
 
-
-
-  createCollection() {
-    const dialogRef = this.dialog.open(CreateCollectionComponent, {
-      height: '600px',
-      width: '800px',
-    });
-
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.resultCreate = result;
-      this.ngOnInit();
-    });
   }
-}
-  /*
-  public deletePoint() {
 
-    if(this.pointId.length > 0)
-    {
-      let dialogRef = this.dialog.open(DeletePointComponent, {
-        height: '400px',
-        width: '600px',
-        data: { name: this.pointId }
+
+
+  createCard() {
+
+
+      let dialogRef = this.dialog.open(CreateCardComponent, {
+        height: '600px',
+        width: '800px',
+        data: { name: this.collectionCardId }
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        this.resultDeletePoint = result;
+        this.result = result;
         this.ngOnInit();
       });
-    }
-    else{
 
-      this.snackbar.open("Introduir identificador de Punt", "Error",{duration:2000});
-
-    }
   }
+  deleteCard() {
+
+
+    let dialogRef = this.dialog.open(DeleteCardComponent, {
+      height: '600px',
+      width: '800px',
+      data: { name: this.cardId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.result = result;
+      this.ngOnInit();
+    });
+
+}
+  /*
 
   public createBadge() {
     const dialogRef = this.dialog.open(CreateBadgeComponent, {
@@ -146,4 +144,4 @@ export class CollectionsComponent implements OnInit {
 
   }*/
 
-
+}

@@ -19,7 +19,9 @@ import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
+import { CollectionComponent } from './pages/collection/collection';
 
+import { CreateCardComponent } from './pages/createCard/createCard';
 
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
@@ -60,6 +62,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/finally';
+import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
+import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 
 
 
@@ -78,6 +82,11 @@ export function createTranslateLoader(http: Http) {
     GroupsComponent,
     PointsBadgesComponent,
     CollectionsComponent,
+    CollectionComponent,
+    CreateCardComponent,
+    DeleteCardComponent,
+    CreateCollectionComponent,
+
     CreateQuestionnairePointsAssignmentComponent,
     CreateQuestionnaireBadgesAssignmentComponent,
     QuestionnairesComponent,

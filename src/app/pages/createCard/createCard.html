@@ -1,0 +1,48 @@
+<div class="createCard-content">
+  <h3 matLine>Nova carta per la col·lecció</h3>
+  <br>
+    <mat-form-field hintLabel="Max 40 caràcters">
+      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom de la carta">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field hintLabel="Escull un dels nivells">
+      <input [(ngModel)]="rank" placeholder="Nivell de la carta" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of ranks" [value]="option">
+       <span> {{ option}}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <br>
+
+    <mat-form-field hintLabel="Escull un dels ratios ">
+      <input [(ngModel)]="ratio" placeholder="Ratio d'aparició de la carta" matInput [formControl]="myControl"  [matAutocomplete]="auto2">
+    </mat-form-field>
+
+    <mat-autocomplete #auto2="matAutocomplete">
+      <mat-option *ngFor="let option of ratios" [value]="option">
+       <span> {{option}}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <br>
+    <mat-form-field hintLabel="Copiar enllaç .jpg">
+      <input matInput [(ngModel)]="image" placeholder="Imatge de la carta">
+    </mat-form-field>
+    <br>
+
+    <mat-card class="example-image" *ngIf = "image">
+      <mat-card-subtitle >Imatge de la nova carta</mat-card-subtitle>
+        <div mat-card-avatar class="example-image"></div>
+
+        <img mat-card-lg-image src="{{image}}">
+    </mat-card>
+
+
+    <br>
+
+    <button mat-raised-button (click)="createNewCard()">Guardar nova Carta</button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
+
+  </div>

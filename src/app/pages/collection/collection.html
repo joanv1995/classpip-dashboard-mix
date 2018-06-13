@@ -1,0 +1,37 @@
+<div class="collection-content">
+    <mat-nav-list *ngIf="collectionCards" class="cardList">
+        <h3 mat-subheader>Cartes de la col·lecció</h3>
+        <mat-list-item *ngFor="let card  of collectionCards" >
+
+            <img matListAvatar src={{card.image}}>
+            <h3 matLine>{{card.name}}</h3>
+            <br>
+            <p matLine>
+                <span>Id: {{card.id}}</span>
+
+              </p>
+            <p matLine>
+              <span>Nivell: {{card.rank}}</span>
+
+            </p>
+            <p matLine>
+                <span>Ratio: {{card.ratio}}</span>
+
+              </p>
+
+
+
+        </mat-list-item>
+         <mat-progress-bar mode="buffer"></mat-progress-bar>
+      </mat-nav-list>
+      <ol>
+        <button mat-raised-button (click)="createCard()">Crear nova carta</button>
+    </ol>
+    <ol>
+        <mat-form-field>
+          <input matInput [(ngModel)]="cardId" placeholder="Carta ID">
+        </mat-form-field>
+        <button mat-raised-button (click)="deleteCard()">Eliminar Carta de la col·lecció</button>
+    </ol>
+
+  </div>
