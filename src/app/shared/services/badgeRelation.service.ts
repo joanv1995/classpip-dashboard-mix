@@ -676,21 +676,28 @@ export class BadgeRelationService {
     return result;
   }
 
-  public postBadgeRelation(badgeId, studentId, schoolId, groupId, value): Observable<Response> {
+  public postBadgeRelation(badgeId, studentId, schoolId, groupId, value): Observable<BadgeRelation> {
 
     let options: RequestOptions = new RequestOptions({
         headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
       });
-
-    let badgeRelation: BadgeRelation = new BadgeRelation(value, badgeId, groupId, studentId, schoolId);
-    var myObject = this.toObject(badgeRelation);
-
-    var url: string;
+      var url: string;
     url = AppConfig.BADGERELATION_URL;
 
-      return this.http.post(url, myObject)
+      let postParams = {
+
+        value: value,
+        badgeId: badgeId,
+        studentId: studentId,
+        schoolId: schoolId,
+        groupId: groupId
+
+      }
+
+    return this.http.post(url, postParams, options)
+
         .map(response => {
-          return response;
+          return BadgeRelation.toObject(response.json());
         })
         .catch((error: Response) => this.utilsService.handleAPIError(error));
   }

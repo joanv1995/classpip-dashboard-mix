@@ -1,6 +1,8 @@
 <div class="collection-content">
     <mat-nav-list *ngIf="collections">
-        <h3 mat-subheader>Col·leccions</h3>
+        <h3 mat-header>Col·leccions</h3>
+        <h3 mat-subheader>Llista de col·leccions</h3>
+
         <mat-list-item *ngFor="let collectionCard  of collections" (click)="goToCollectionDetails(collectionCard)" >
             <img matListAvatar src={{collectionCard.image}}>
 

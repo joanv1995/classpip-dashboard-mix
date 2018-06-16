@@ -1,6 +1,7 @@
 <div class="groups-content">
   <mat-list *ngIf="groups">
-    <h3 mat-subheader>{{ 'GROUPS.TITLE' | translate }}</h3>
+    <h3 mat-header>{{ 'GROUPS.TITLE' | translate }}</h3>
+    <h3 mat-subheader>Llistat de grups</h3>
     <mat-list-item *ngFor="let group of groups">
       <mat-icon mat-list-icon>folder</mat-icon>
       <h4 mat-line>{{group.name}}</h4>

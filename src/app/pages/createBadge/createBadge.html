@@ -2,7 +2,6 @@
 
     <mat-form-field hintLabel="Max 40 caràcters">
       <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom de la Insígnia">
-      <mat-hint align="end">{{input.value?.length || 0}}/40</mat-hint>
     </mat-form-field>
     <br>
 

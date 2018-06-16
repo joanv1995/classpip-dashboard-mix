@@ -1,6 +1,8 @@
 <div class="questionnaires-content">
   <mat-nav-list *ngIf="questionnaires">
-    <h3 mat-subheader>{{ 'QUESTIONNAIRES.TITLE' | translate }}</h3>
+    <h3 mat-header>{{ 'QUESTIONNAIRES.TITLE' | translate }}</h3>
+    <h3 mat-subheader>Llista de qüestionaris</h3>
+
     <mat-list-item *ngFor="let questionnaire of questionnaires" (click)="goToQuestionnaireDetail(questionnaire)">
       <mat-icon mat-list-icon>note</mat-icon>
       <h4 mat-line>{{questionnaire.name}}</h4>
