@@ -64,6 +64,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/finally';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
+import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+
 
 
 
@@ -86,6 +88,7 @@ export function createTranslateLoader(http: Http) {
     CreateCardComponent,
     DeleteCardComponent,
     CreateCollectionComponent,
+    DeleteCollectionComponent,
 
     CreateQuestionnairePointsAssignmentComponent,
     CreateQuestionnaireBadgesAssignmentComponent,

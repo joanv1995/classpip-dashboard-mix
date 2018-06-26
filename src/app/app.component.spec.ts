@@ -51,6 +51,8 @@ import {
 } from './shared/services/index';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
+import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
@@ -71,6 +73,7 @@ describe('AppComponent', () => {
         CollectionsComponent,
         CollectionComponent,
         CreateCollectionComponent,
+        DeleteCollectionComponent,
         CreateCardComponent,
         DeleteCardComponent,
         QuestionnairesComponent,

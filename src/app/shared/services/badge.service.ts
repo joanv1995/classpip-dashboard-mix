@@ -54,7 +54,7 @@ export class BadgeService {
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    return this.http.get(AppConfig.BADGES_URL + '/' + id, options)
+    return this.http.get(AppConfig.BADGE_URL + '/' + id, options)
       .map((response: Response, index: number) => Badge.toObject(response.json()))
   }
 

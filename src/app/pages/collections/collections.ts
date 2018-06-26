@@ -8,6 +8,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoadingService, UtilsService, GroupService, AlertService, CollectionService, SchoolService } from '../../shared/services/index';
 import { CreateCollectionComponent } from '../createCollection/createCollection';
+import { DeleteCollectionComponent } from '../deleteCollection/deleteCollection';
+
+import { FormControl } from '@angular/forms';
 
 
 
@@ -19,12 +22,18 @@ import { CreateCollectionComponent } from '../createCollection/createCollection'
 })
 export class CollectionsComponent implements OnInit {
 
+  public collId: string;
+  public myControl = new FormControl();
   public returnUrl: string;
+  public groupSelected: string;
+  public collectionSelected: string;
 
   public collections: Array<CollectionCard>;
+  public mygroups: Array<Group>;
 
-
+  public isTeacher: boolean = false;
   public resultCreate: string;
+  public resultDeleteCollection: number;
 
   constructor(
     public route: ActivatedRoute,
@@ -32,6 +41,7 @@ export class CollectionsComponent implements OnInit {
     public alertService: AlertService,
     public schoolService: SchoolService,
     public utilsService: UtilsService,
+    public groupServivce: GroupService,
     public collectionService: CollectionService,
     public loadingService: LoadingService,
     public dialog: MatDialog,
@@ -49,7 +59,36 @@ export class CollectionsComponent implements OnInit {
 
 
     if (this.utilsService.role === Role.TEACHER) {
+      this.isTeacher = true;
       this.collectionService.getCollections().subscribe(
+        ((collections: Array<CollectionCard>) => {
+          this.collections = collections;
+          this.loadingService.hide();
+
+
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
+
+        this.groupServivce.getMyGroups().subscribe(
+          ((groups: Array<Group>)=>{
+            this.mygroups = groups;
+            this.loadingService.hide();
+
+
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
+          }));
+
+      }
+
+   else if (this.utilsService.role === Role.STUDENT) {
+      this.isTeacher = false;
+      this.collectionService.getMyCollections().subscribe(
         ((collections: Array<CollectionCard>) => {
           this.collections = collections;
           this.loadingService.hide();
@@ -63,7 +102,7 @@ export class CollectionsComponent implements OnInit {
 
 
 
-    }
+      }
   }
     goToCollectionDetails(collectionCard) {
 
@@ -86,52 +125,35 @@ export class CollectionsComponent implements OnInit {
       this.ngOnInit();
     });
   }
-}
-  /*
-  public deletePoint() {
 
-    if(this.pointId.length > 0)
+  assignCollectionToGroup(){
+
+    this.collectionService.assignCollection(this.collectionSelected, this.groupSelected).subscribe(
+      ((response: Response)=> {
+
+        this.snackbar.open("Col·lecció assignada correctament","",{duration:2000});
+
+
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+        this.snackbar.open("Col·lecció no assignada","Error",{duration:2000});
+
+      }));
+
+  }
+ public  deleteCollection(){
+    if(this.collId.length > 0)
     {
-      let dialogRef = this.dialog.open(DeletePointComponent, {
+      let dialogRef = this.dialog.open(DeleteCollectionComponent, {
         height: '400px',
         width: '600px',
-        data: { name: this.pointId }
+        data: { name: this.collId }
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        this.resultDeletePoint = result;
-        this.ngOnInit();
-      });
-    }
-    else{
-
-      this.snackbar.open("Introduir identificador de Punt", "Error",{duration:2000});
-
-    }
-  }
-
-  public createBadge() {
-    const dialogRef = this.dialog.open(CreateBadgeComponent, {
-      height: '600px',
-      width: '700px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.resultCreate = result;
-      this.ngOnInit();
-    });
-  }
-  public deleteBadge() {
-
-    if(this.badgeId.length > 0)
-    {
-      let dialogRef = this.dialog.open(DeleteBadgeComponent, {
-        height: '400px',
-        width: '600px',
-        data: { name: this.badgeId }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        this.resultDeleteBadge = result;
+        this.resultDeleteCollection = result;
         this.ngOnInit();
       });
     }
@@ -140,10 +162,11 @@ export class CollectionsComponent implements OnInit {
       this.snackbar.open("Introduir identificador d'Insígnia", "Error",{duration:2000});
 
     }
+
+
+
+
+
   }
-  /*cancel(): void {
-    this.dialogRef.close();
-
-  }*/
-
+}
 

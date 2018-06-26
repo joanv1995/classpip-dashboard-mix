@@ -21,6 +21,8 @@ export * from './pointRelation';
 export * from './badgeRelation';
 export * from './card';
 export * from './collectionCard';
+export * from './resultPoints';
+export * from './resultBadges';
 
 
 

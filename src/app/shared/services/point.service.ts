@@ -57,7 +57,7 @@ export class PointService {
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    return this.http.get(AppConfig.POINTS_URL + '/' + id, options)
+    return this.http.get(AppConfig.POINT_URL + '/' + id, options)
       .map((response: Response, index: number) => Point.toObject(response.json()))
   }
 

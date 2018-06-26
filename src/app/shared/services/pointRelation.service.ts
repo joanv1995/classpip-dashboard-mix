@@ -16,6 +16,8 @@ import { Point } from '../models/point';
 import { PointRelation } from '../models/pointRelation';
 import { Grade } from '../models/grade';
 import { Matter } from '../models/matter';
+import { ResultPoints } from '../models';
+
 
 @Injectable()
 export class PointRelationService {
@@ -183,13 +185,10 @@ export class PointRelationService {
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
-
-    return this.http.get(AppConfig.STUDENT_URL + '/' + studentId + AppConfig.POINTSRELATION_URL, options)
+      return this.http.get(AppConfig.STUDENT_URL + '/' + studentId + AppConfig.POINTSRELATION_URL, options)
       .map((response: Response, index: number) => PointRelation.toObjectArray(response.json()))
 
-  }
-
-  /**
+  }  /** /**
    * This method returns all the relation points of the student in this group
    * of the current students logged into the application
    * @return {Array<PointRelation>} returns the list of groups

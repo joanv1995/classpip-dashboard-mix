@@ -1,5 +1,50 @@
 <div class="collection-content">
-    <mat-nav-list *ngIf="collectionCards" class="cardList">
+  <mat-card class="cardcontent" *ngIf ="isTeacher">
+      <h5 mat-subheader>Assignar cartes a estudiant</h5>
+      <mat-form-field class="optionForm" >
+          <mat-select [(value)]="optionType" placeholder="Escull el tipus d'assignació"  [formControl]= "myControl">
+              <mat-option *ngFor="let option of options" [value]="option">
+                  {{option}}
+                </mat-option>
+
+          </mat-select>
+      </mat-form-field>
+      <mat-form-field class = "formMargin" *ngIf = "optionType =='Assignar una carta'" >
+          <mat-select [(value)]="cardSelected" placeholder="Escull la carta"  [formControl]= "myControl">
+              <mat-option *ngFor="let card of collectionCards" [value]="card.id">
+                  {{card.name}} ({{card.rank}})
+                </mat-option>
+
+          </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field >
+          <mat-select [(value)]="groupSelected" placeholder="Escull el group"  [formControl]= "myControl" >
+
+            <mat-option *ngFor="let group of collectionGroups" [value]="group.id" (click)="showStudents()">
+              {{group.name}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+
+      <mat-form-field  class = "formMargin"  >
+          <mat-select [(value)]="studentSelected" placeholder="Escull l'estudiant" [formControl]= "myControl">
+
+            <mat-option *ngFor="let student of collectionStudents" [value]="student.id">
+              {{student.name}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+        <br>
+        <button mat-raised-button (click)="assignCardsToStudent()">ASSIGNAR CARTES</button>
+
+
+
+  </mat-card>
+
+
+
+    <mat-nav-list *ngIf="collectionCards && isTeacher" class="cardList">
         <h3 mat-subheader>Cartes de la col·lecció</h3>
         <mat-list-item *ngFor="let card  of collectionCards" >
 
@@ -24,11 +69,11 @@
         </mat-list-item>
          <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
-      <ol>
+      <ol *ngIf ="isTeacher">
         <button mat-raised-button (click)="createCard()">Crear nova carta</button>
     </ol>
-    <ol>
-        <mat-form-field>
+    <ol *ngIf ="isTeacher">
+        <mat-form-field >
           <input matInput [(ngModel)]="cardId" placeholder="Carta ID">
         </mat-form-field>
         <button mat-raised-button (click)="deleteCard()">Eliminar Carta de la col·lecció</button>

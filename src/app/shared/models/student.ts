@@ -10,6 +10,7 @@ export class Student {
   private _schoolId: number;
   private _avatarId: number;
   private _avatar: Avatar;
+  private _totalPoints: number;
 
   constructor(name?: string, surname?: string, username?: string,
     email?: string, schoolId?: number, avatarId?: number) {
@@ -33,6 +34,7 @@ export class Student {
       result.email = object.email;
       result.schoolId = object.schoolId;
       result.avatarId = object.avatarId;
+      result.totalPoints = object.totalPoints;
     }
     return result;
   }
@@ -111,6 +113,13 @@ export class Student {
 
   public set avatar(value: Avatar) {
     this._avatar = value;
+  }
+  public get totalPoints(): number {
+    return this._totalPoints;
+  }
+
+  public set totalPoints(value: number) {
+    this._totalPoints = value;
   }
 
 }

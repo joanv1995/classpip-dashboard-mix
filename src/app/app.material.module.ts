@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {MatSlideToggleModule,
+import {MatSlideToggleModule, MatTabsModule,
   MatFormFieldModule, MatToolbarModule, MatInputModule, MatButtonModule, MatMenuModule,
   MatSelectModule, MatCardModule, MatGridListModule, MatProgressSpinnerModule,
   MatProgressBarModule, MatSnackBarModule, MatListModule, MatIconModule, MatAutocompleteModule
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
+    MatTabsModule,
     MatSlideToggleModule,
     MatAutocompleteModule,
     MatFormFieldModule,
@@ -30,6 +31,7 @@ import { CommonModule } from '@angular/common';
     MatDialogModule
   ],
   exports: [
+    MatTabsModule,
     MatSlideToggleModule,
     MatFormFieldModule,
     MatAutocompleteModule,

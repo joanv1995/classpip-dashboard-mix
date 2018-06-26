@@ -18,17 +18,22 @@ export class QuestionnairesComponent implements OnInit {
 
   public questionnaires: Array<Questionnaire>;
   private returnUrl: string;
-
+  valueQuests:  Array<Questionnaire> = new Array<Questionnaire>();
+  myQuests: Array<Questionnaire> = new Array<Questionnaire>();
   animal: number;
+  myGroups: Array<Group> = new Array<Group>();
   name: number;
   resultCreate: number;
+  isTeacher: boolean = false;
 
   constructor(
+
     public snackbar: MatSnackBar,
     public route: ActivatedRoute,
     public router: Router,
     public alertService: AlertService,
     public utilsService: UtilsService,
+    public groupService: GroupService,
     public loadingService: LoadingService,
     public questionnaireService: QuestionnaireService,
     public dialog: MatDialog) {
@@ -38,8 +43,10 @@ export class QuestionnairesComponent implements OnInit {
   }
 
  public ngOnInit(): void {
+
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/questionnaire';
     if (this.utilsService.role === Role.TEACHER) {
+      this.isTeacher = true;
       //this.loadingService.show();
       this.questionnaireService.getQuestionnaires().subscribe(
         ((questionnaires: Array<Questionnaire>) => {
@@ -51,7 +58,51 @@ export class QuestionnairesComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
     }
-    this.loadingService.hide();
+    else if(this.utilsService.role === Role.STUDENT){
+
+      this.questionnaireService.getAllQuestionnaires().subscribe(
+        ((valueQuests: Array<Questionnaire>)=>{
+          this.valueQuests = valueQuests;
+          for (let q of this.valueQuests)
+          {
+
+            this.groupService.getMyGroups().subscribe(
+              ((gg: Array<Group>)=>{
+                this.myGroups = gg;
+                for (let g of this.myGroups)
+                {
+
+                  if(q.groupid == g.id )
+                  {
+
+                      this.myQuests.push(q);
+
+                  }
+
+
+                }
+             }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+
+
+
+
+
+          }
+       }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
+
+
+
+
+
+    }
 
   }
 

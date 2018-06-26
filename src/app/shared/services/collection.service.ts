@@ -106,7 +106,7 @@ export class CollectionService {
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id),
     });
     let url: string = AppConfig.COLLECTION_URL+'/'+collectionId+AppConfig.GROUPS_URL+'/rel/'+groupId;
-    return this.http.put(url,null,options)
+    return this.http.put(url,options)
       .map(response => {
         return response.json()
       })

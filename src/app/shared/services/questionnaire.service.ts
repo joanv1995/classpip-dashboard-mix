@@ -97,6 +97,24 @@ export class QuestionnaireService {
   }
 
     /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
+  public getAllQuestionnaires(): Observable<Array<Questionnaire>> {
+
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    const url: string = AppConfig.QUESTIONNAIRE_URL;
+
+
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => Questionnaire.toObjectArray(response.json()));
+  }
+
+    /**
    * Returns a matter object with all the information from a matter
    * identifier. This method is used to fill all the information
    * of the groups we are querying

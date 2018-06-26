@@ -28,6 +28,8 @@ import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
+import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+
 
 
 
@@ -44,6 +46,8 @@ const appRoutes: Routes = [
   { path: 'collections', component: CollectionsComponent, canActivate: [AuthGuard] },
   { path: 'collection/:id', component: CollectionComponent, canActivate: [AuthGuard] },
   { path: 'createCollection', component: CreateCollectionComponent, canActivate: [AuthGuard] },
+  { path: 'deleteColection', component: DeleteCollectionComponent, canActivate: [AuthGuard] },
+
 
   { path: 'createCard', component: CreateCardComponent, canActivate: [AuthGuard] },
   { path: 'deleteCard', component: DeleteCardComponent, canActivate: [AuthGuard] },
