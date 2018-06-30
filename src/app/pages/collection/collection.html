@@ -1,6 +1,6 @@
 <div class="collection-content">
   <mat-card class="cardcontent" *ngIf ="isTeacher">
-      <h5 mat-subheader>Assignar cartes a estudiant</h5>
+      <h5 mat-subheader>Assignar cromos a estudiant</h5>
       <mat-form-field class="optionForm" >
           <mat-select [(value)]="optionType" placeholder="Escull el tipus d'assignació"  [formControl]= "myControl">
               <mat-option *ngFor="let option of options" [value]="option">
@@ -9,7 +9,7 @@
 
           </mat-select>
       </mat-form-field>
-      <mat-form-field class = "formMargin" *ngIf = "optionType =='Assignar una carta'" >
+      <mat-form-field class = "formMargin" *ngIf = "optionType =='Assignar una carta a escollir'" >
           <mat-select [(value)]="cardSelected" placeholder="Escull la carta"  [formControl]= "myControl">
               <mat-option *ngFor="let card of collectionCards" [value]="card.id">
                   {{card.name}} ({{card.rank}})
@@ -70,13 +70,13 @@
          <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
       <ol *ngIf ="isTeacher">
-        <button mat-raised-button (click)="createCard()">Crear nova carta</button>
+        <button mat-raised-button (click)="createCard()">Crear nou cromo</button>
     </ol>
     <ol *ngIf ="isTeacher">
         <mat-form-field >
-          <input matInput [(ngModel)]="cardId" placeholder="Carta ID">
+          <input matInput [(ngModel)]="cardId" placeholder="Cromo ID">
         </mat-form-field>
-        <button mat-raised-button (click)="deleteCard()">Eliminar Carta de la col·lecció</button>
+        <button mat-raised-button (click)="deleteCard()">Eliminar cromo de la col·lecció</button>
     </ol>
 
   </div>

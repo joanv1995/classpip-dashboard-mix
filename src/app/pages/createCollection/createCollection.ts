@@ -3,9 +3,9 @@ import {FormControl, FormsModule} from '@angular/forms';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { Login, Group, Role, Questionnaire, Point, Card, CollectionCard } from '../../shared/models/index';
+import { Login, Group, Role, Questionnaire, Point, Card, CollectionCard, Badge } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
-import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService, CollectionService } from '../../shared/services/index';
+import { LoadingService, UtilsService,PointService,GroupService, AlertService, QuestionnaireService, CollectionService, BadgeService, SchoolService } from '../../shared/services/index';
 
 
 
@@ -15,11 +15,15 @@ import { LoadingService, UtilsService,PointService, GroupService, AlertService, 
   styleUrls: ['./createCollection.scss']
 })
 export class CreateCollectionComponent implements OnInit {
+  myControl = new FormControl();
   public collectionId: string;
   public name: string;
   public num: number;
 
   public image: string;
+  public badgeSelected: string;
+
+  public badges: Array<Badge> = new Array<Badge>();
 
 
   public newCollection: CollectionCard;
@@ -30,6 +34,7 @@ export class CreateCollectionComponent implements OnInit {
     public utilsService: UtilsService,
     public loadingService: LoadingService,
     public pointService: PointService,
+    public schoolService: SchoolService,
     public collectionService: CollectionService,
     public dialog: MatDialog,
     public snackbar: MatSnackBar,
@@ -46,6 +51,18 @@ export class CreateCollectionComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.schoolService.getMySchoolBadges().subscribe(
+      ((badges: Array<Badge>) => {
+        this.badges = badges;
+        this.loadingService.hide();
+
+
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
+
 
 
   }
@@ -57,15 +74,21 @@ export class CreateCollectionComponent implements OnInit {
     this.newCollection.name = this.name;
     this.newCollection.num = String(this.num);
     this.newCollection.image = this.image;
-    this.newCollection.createdBy = this.utilsService.currentUser.id;
-
+    this.newCollection.createdBy = String(this.utilsService.currentUser.userId);
+    if(this.badgeSelected!= "none")
+    {
+      this.newCollection.badgeId = this.badgeSelected;
+    }
+    else{
+      this.newCollection.badgeId = null;
+    }
     this.loadingService.hide();
 
     this.collectionService.postCollection(this.newCollection).subscribe(
       ((returnedCollection: CollectionCard) => {
         this.returnedCollection = returnedCollection;
         this.loadingService.hide();
-        this.snackbar.open("Nova col·lecció creada !");
+        this.snackbar.open("Nova col·lecció creada !","",{duration:2000});
         this.cancel();
       }),
       ((error: Response) => {

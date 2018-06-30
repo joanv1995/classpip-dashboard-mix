@@ -12,7 +12,19 @@
     </mat-form-field>
     <br>
     <br>
+    <mat-form-field *ngIf="badges">
+        <mat-select [(value)]="badgeSelected" placeholder="Escull la insígnia guanyada si es completa la col·lecció">
+            <mat-option value="none">
+                No assignar cap insígnia
+            </mat-option>
+          <mat-option *ngFor="let badge of badges" [value]="badge.id">
+            {{badge.name}}
+          </mat-option>
+        </mat-select>
 
+      </mat-form-field>
+      <br>
+    <br>
     <mat-form-field hintLabel="Copiar enllaç .jpg">
       <input matInput [(ngModel)]="image" placeholder="Imatge de la col·lecció" >
     </mat-form-field>

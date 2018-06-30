@@ -9,6 +9,7 @@ import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
+import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
 
 import { CollectionComponent } from './pages/collection/collection';
 import { CreateCardComponent } from './pages/createCard/createCard';
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'collection/:id', component: CollectionComponent, canActivate: [AuthGuard] },
   { path: 'createCollection', component: CreateCollectionComponent, canActivate: [AuthGuard] },
   { path: 'deleteColection', component: DeleteCollectionComponent, canActivate: [AuthGuard] },
+  { path: 'collectionStudent/:id', component: CollectionStudentComponent, canActivate: [AuthGuard] },
 
 
   { path: 'createCard', component: CreateCardComponent, canActivate: [AuthGuard] },

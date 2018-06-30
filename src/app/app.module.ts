@@ -20,6 +20,7 @@ import { GroupsComponent } from './pages/groups/groups';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
 import { CollectionComponent } from './pages/collection/collection';
+import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
 
 import { CreateCardComponent } from './pages/createCard/createCard';
 
@@ -46,6 +47,10 @@ import { LanguageComponent } from './pages/language/language';
 // shared (components)
 import { NavBarComponent } from './shared/navbar/navbar';
 import { FooterComponent } from './shared/footer/footer';
+// pipes
+import { OrderByIdPipe } from './shared/pipes/order-by-id.pipe';
+import { OrderByNamePipe } from './shared/pipes/order-by-name.pipe';
+import { OrderBySurnamePipe } from './shared/pipes/order-by-surname.pipe';
 
 // shared (services)
 import { AuthGuard } from './shared/auth/auth.guard';
@@ -71,6 +76,7 @@ import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollec
 
 
 
+
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
 }
@@ -85,6 +91,7 @@ export function createTranslateLoader(http: Http) {
     PointsBadgesComponent,
     CollectionsComponent,
     CollectionComponent,
+    CollectionStudentComponent,
     CreateCardComponent,
     DeleteCardComponent,
     CreateCollectionComponent,
@@ -109,7 +116,10 @@ export function createTranslateLoader(http: Http) {
     // shared
     NavBarComponent,
     FooterComponent,
-    LoadingComponent
+    LoadingComponent,
+    OrderByIdPipe,
+    OrderByNamePipe,
+    OrderBySurnamePipe
   ],
   imports: [
     BrowserModule,

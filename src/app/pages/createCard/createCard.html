@@ -1,13 +1,13 @@
 <div class="createCard-content">
-  <h3 matLine>Nova carta per la col·lecció</h3>
+  <h3 matLine>Nou cromo per la col·lecció</h3>
   <br>
     <mat-form-field hintLabel="Max 40 caràcters">
-      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom de la carta">
+      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom del cromo">
     </mat-form-field>
     <br>
 
     <mat-form-field hintLabel="Escull un dels nivells">
-      <input [(ngModel)]="rank" placeholder="Nivell de la carta" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+      <input [(ngModel)]="rank" placeholder="Nivell del cromo" matInput [formControl]="myControl"  [matAutocomplete]="auto">
     </mat-form-field>
 
     <mat-autocomplete #auto="matAutocomplete">

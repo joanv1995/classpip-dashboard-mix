@@ -15,7 +15,9 @@ import { CreateQuestionnaireComponent } from '../../pages/createQuestionnaire/cr
   styleUrls: ['./questionnaires.scss']
 })
 export class QuestionnairesComponent implements OnInit {
-
+  active: string;
+  estate: boolean;
+  ques: Questionnaire;
   public questionnaires: Array<Questionnaire>;
   private returnUrl: string;
   valueQuests:  Array<Questionnaire> = new Array<Questionnaire>();
@@ -24,6 +26,7 @@ export class QuestionnairesComponent implements OnInit {
   myGroups: Array<Group> = new Array<Group>();
   name: number;
   resultCreate: number;
+  device: any = [];
   isTeacher: boolean = false;
 
   constructor(
@@ -139,5 +142,34 @@ export class QuestionnairesComponent implements OnInit {
 
     this.router.navigate([this.returnUrl, questionnaire.id]);
   }
+  onChange(value, quest: Questionnaire) {
+    if(value.checked ===true)
+    {
+      this.estate = true;
+      this.snackbar.open(quest.name+" ha sido activado correctamente","",{duration:2000});
+
+
+    }
+    else
+    {
+      this.estate = false;
+      this.snackbar.open(quest.name+" ha sido desactivado activado correctamente","",{duration:2000});
+
+
+    }
+
+    this.questionnaireService.updateQuestionnaire(quest.id,quest.name,quest.date,quest.groupid,quest.points,value.checked,quest.badges).subscribe(
+      ((ques: Questionnaire)=>{
+        this.ques = ques;
+
+        this.loadingService.hide();
+             }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
+
+  }
+
 
 }

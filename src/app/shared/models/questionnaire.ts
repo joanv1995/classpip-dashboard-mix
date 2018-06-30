@@ -6,12 +6,14 @@ export class Questionnaire {
   private _points: number [];
   private _badges: string [];
   private _groupid: string;
+  private _active: boolean;
 
-  constructor(id?: string, name?: string, date?: string, points?: number[]) {
+  constructor(id?: string, name?: string, date?: string, points?: number[], active?:boolean) {
       this._id = id;
       this._name = name;
       this._date = date;
       this._points = points;
+      this._active = active;
 
   }
 
@@ -26,6 +28,7 @@ export class Questionnaire {
       result.points = object.points;
       result.groupid = object.groupid;
       result.badges = object.badges;
+      result.active = object.active;
     }
     return result;
   }
@@ -85,5 +88,12 @@ export class Questionnaire {
 
   public set badges(value: string[]) {
     this._badges = value;
+  }
+  public get active(): boolean {
+    return this._active;
+  }
+
+  public set active(value: boolean) {
+    this._active = value;
   }
 }

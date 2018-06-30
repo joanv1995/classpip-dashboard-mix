@@ -1,0 +1,34 @@
+<div class="collection-content">
+
+<mat-card *ngIf ="badgeWon">
+    <mat-card-subtitle>Premi per acabar la col·lecció</mat-card-subtitle>
+    <mat-card-content>
+      <h3>Insígnia {{badgeWon.name}}</h3>
+    </mat-card-content>
+    <img mat-card-sm-image src="{{badgeWon.image}}" alt="Insígnia {{badgeWon.name}}">
+</mat-card>
+    <mat-nav-list class="cardList">
+        <h3 mat-subheader>Cartes de la col·lecció ( {{myCards}} / {{finalCards.length}} )</h3>
+        <mat-list-item *ngFor="let card  of finalCards" >
+            <img class="imagelist" src={{card.image}}>
+            <h3 matLine>{{card.name}}</h3>
+            <br>
+            <p matLine>
+                <span>Id: {{card.id}}</span>
+
+              </p>
+            <p matLine>
+              <span>Nivell: {{card.rank}}</span>
+
+            </p>
+            <p matLine>
+                <span>Ratio: {{card.ratio}}</span>
+
+              </p>
+
+        </mat-list-item>
+         <mat-progress-bar mode="buffer"></mat-progress-bar>
+      </mat-nav-list>
+
+
+  </div>

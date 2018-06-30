@@ -1,14 +1,17 @@
 <div class="questionnaires-content">
+
   <mat-nav-list *ngIf="questionnaires && isTeacher">
     <h3 mat-header>{{ 'QUESTIONNAIRES.TITLE' | translate }}</h3>
     <h3 mat-subheader>Llista de qüestionaris</h3>
 
-    <mat-list-item *ngFor="let questionnaire of questionnaires" (click)="goToQuestionnaireDetail(questionnaire)">
-      <mat-icon mat-list-icon>note</mat-icon>
-      <h4 mat-line>{{questionnaire.name}}</h4>
+    <mat-list-item *ngFor="let questionnaire of questionnaires">
+      <mat-icon mat-list-icon  (click)="goToQuestionnaireDetail(questionnaire)">note</mat-icon>
+      <h4 mat-line  (click)="goToQuestionnaireDetail(questionnaire)">{{questionnaire.name}}</h4>
       <p mat-line>{{ 'QUESTIONNAIRES.ID' | translate }} {{questionnaire.id}}</p>
       <h4 mat-line *ngIf= "questionnaire.groupid">Id. Grupo: {{questionnaire.groupid}}</h4>
-      <h4 mat-line *ngIf= "questionnaire.badges">Id. Badge max: {{questionnaire.badges[0]}}</h4>
+      <mat-slide-toggle class="toggleActive" labelPosition = "before" (change)="onChange($event, questionnaire)" [checked]="questionnaire.active" >
+        <p>Activado</p>
+      </mat-slide-toggle>
 
     </mat-list-item>
     <mat-progress-bar mode="buffer"></mat-progress-bar>
@@ -18,16 +21,17 @@
       <h3 mat-header>{{ 'QUESTIONNAIRES.TITLE' | translate }}</h3>
       <h3 mat-subheader>Llista dels teus qüestionaris</h3>
 
-      <mat-list-item *ngFor="let questionnaire of myQuests">
+      <mat-list-item class="card disable-md-clickable" *ngFor="let questionnaire of myQuests">
         <mat-icon mat-list-icon>note</mat-icon>
         <h4 mat-line>{{questionnaire.name}}</h4>
         <p mat-line>{{ 'QUESTIONNAIRES.ID' | translate }} {{questionnaire.id}}</p>
-        <h4 mat-line *ngIf= "questionnaire.groupid">Id Grup: {{questionnaire.groupid}}</h4>
+          <h4 mat-line *ngIf= "questionnaire.groupid">Id Grup: {{questionnaire.groupid}}</h4>
         <h4 mat-line>Fecha: {{questionnaire.date}}</h4>
 
       </mat-list-item>
       <mat-progress-bar mode="buffer"></mat-progress-bar>
     </mat-nav-list>
+
 
 <ol *ngIf="questionnaires && isTeacher">
   <mat-form-field>

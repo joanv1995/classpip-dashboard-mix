@@ -144,6 +144,38 @@ export class QuestionnaireService {
         console.error(errMsg);
         return Observable.throw(errMsg);
     }
+    public updateQuestionnaire(id: string, name: string, date: string, groupid: string, points: number[], active: boolean, badges: string[] ): Observable<Questionnaire> {
+
+      let options: RequestOptions = new RequestOptions({
+        headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+      });
+
+      let url: string;
+      url = AppConfig.QUESTIONNAIRE_URL;
+      let postParams;
+
+          postParams = {
+            id: id,
+            name: name,
+            date: date,
+            groupid:groupid,
+            points: points,
+            badges:badges,
+            active: active,
+
+      }
+
+
+
+
+      return this.http.patch(url, postParams, options)
+        .map(response => {
+          this.utilsService.currentQuestionnaire = Questionnaire.toObject(response.json());
+          return Questionnaire;
+        })
+        .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+    }
 
   public saveQuestionnaire(stringData: Array<string>, badgesArray: Array<string>): Observable<Questionnaire> {
 
@@ -164,6 +196,7 @@ export class QuestionnaireService {
           groupid: stringData[2],
           points: stringData[3],
           teacherId: this.utilsService.currentUser.userId,
+          studentId: 0
 
         }
       }

@@ -28,6 +28,7 @@ export class CollectionComponent implements OnInit {
   public studentSelected: string;
   public returnUrl: string;
   public result: number;
+  public count: number;
   public collectionCards: Array<Card>;
   public collectionGroups: Array<Group>;
   public collectionStudents: Array<Student>;
@@ -36,7 +37,7 @@ export class CollectionComponent implements OnInit {
   public sub: any;
   public collectionCardId: string;
   public cards = [];
-  public options = ["Assignar una carta","Assignar tres cartes aleatòries","Assignar cinc cartes aleatòries"];
+  public options = ["Assignar una carta a escollir","Assignar una carta aleatòria","Assignar tres cartes aleatòries","Assignar cinc cartes aleatòries"];
 
 
 
@@ -165,43 +166,113 @@ export class CollectionComponent implements OnInit {
     {
     switch (this.optionType){
       case "Assignar una carta":
-      if(this.studentSelected && this.cardSelected && this.groupSelected)
-      {
-        this.collectionService.assignCardToStudent(this.studentSelected,this.cardSelected).subscribe(
-          ((collectionCards: Array<Card>) => {
-            this.loadingService.hide();
+        if(this.studentSelected && this.cardSelected && this.groupSelected)
+        {
+          this.collectionService.assignCardToStudent(this.studentSelected,this.cardSelected).subscribe(
+            ((collectionCards: Array<Card>) => {
+              this.loadingService.hide();
 
-            this.snackbar.open("Carta assignada correctament","",{duration:2000})
-
-
-          }),
-          ((error: Response) => {
-            this.loadingService.hide();
-            this.alertService.show(error.toString());
-          }));
-      }
-      else{
-        this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+              this.snackbar.open("Carta assignada correctament","",{duration:2000})
 
 
-      }
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+        }
+        else{
+          this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
 
 
+        }
+
+        break;
+        case "Assignar una carta aleatòria":
+
+        if(this.studentSelected  && this.groupSelected)
+        {
+
+
+          var numcard = this.randomNumber(1,this.collectionCards.length -1);
+          this.snackbar.open(String(numcard) + "/"+String(this.count));
+
+            this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
+              ((collectionCards: Array<Card>) => {
+                this.loadingService.hide();
+
+
+
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+
+
+
+
+          this.snackbar.open("1 Carta assignades correctament", "",{duration:2000});
+
+
+        }
+        else{
+          this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+
+
+        }
+        break;
       case "Assignar tres cartes aleatòries":
 
+          if(this.studentSelected  && this.groupSelected)
+          {
+
+            for(let i = 0; i < 3;i++)
+            {
+
+
+            var numcard = this.randomNumber(1,this.collectionCards.length -1);
+
+              this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
+                ((collectionCards: Array<Card>) => {
+                  this.loadingService.hide();
+
+
+
+                }),
+                ((error: Response) => {
+                  this.loadingService.hide();
+                  this.alertService.show(error.toString());
+                }));
+
+
+
+            }
+            this.snackbar.open("3 Cartes assignades correctament", "",{duration:2000});
+
+
+          }
+          else{
+            this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+
+
+          }
+          break;
+
+      case "Assignar cinc cartes aleatòries":
 
 
       if(this.studentSelected  && this.groupSelected)
       {
-        for(var i = 0; i < 3;i++)
+        for(let i = 0; i < 5;i++)
         {
-        var numcard = this.randomNumber(1,this.collectionCards.length -1);
+          var numcard = this.randomNumber(1,this.collectionCards.length-1)
 
-          this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
+          this.collectionService.assignCardToStudent(this.studentSelected, +numcard).subscribe(
             ((collectionCards: Array<Card>) => {
               this.loadingService.hide();
 
-
+              this.count ++;
 
 
             }),
@@ -213,57 +284,29 @@ export class CollectionComponent implements OnInit {
 
 
         }
-
-
-      }
-      else{
-        this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+        this.snackbar.open("5 Cartes assignades correctament", "",{duration:2000});
 
 
       }
 
-      case "Assignar tres cartes aleatòries":
-
-
-      if(this.studentSelected  && this.groupSelected)
-      {
-        for(var i = 0; i < 5;i++)
-        {
-          var numcard = this.randomNumber(0,this.collectionCards.length)
-
-          this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
-            ((collectionCards: Array<Card>) => {
-              this.loadingService.hide();
-
-
-
-
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-
-
-
-        }
-
-
-      }
 
       else{
         this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
 
 
       }
+      break;
     }
+
+    this.groupSelected = "";
+    this.studentSelected = "";
+    this.optionType = "";
   }
   else{
     this.snackbar.open("S'ha d'escollir un tipus d'assignació", "Error",{duration:2000});
 
 
     }
-
   }
   public randomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);

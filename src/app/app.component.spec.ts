@@ -33,6 +33,11 @@ import { DeletePointComponent } from './pages/deletePoint/deletePoint';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 
+// pipes
+import { OrderByIdPipe } from './shared/pipes/order-by-id.pipe';
+import { OrderByNamePipe } from './shared/pipes/order-by-name.pipe';
+import { OrderBySurnamePipe } from './shared/pipes/order-by-surname.pipe';
+
 
 import { LanguageComponent } from './pages/language/language';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,6 +57,7 @@ import {
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
 
 
 export function createTranslateLoader(http: Http) {
@@ -72,6 +78,7 @@ describe('AppComponent', () => {
         GroupsComponent,
         CollectionsComponent,
         CollectionComponent,
+        CollectionStudentComponent,
         CreateCollectionComponent,
         DeleteCollectionComponent,
         CreateCardComponent,
@@ -93,7 +100,10 @@ describe('AppComponent', () => {
         // shared
         NavBarComponent,
         FooterComponent,
-        LoadingComponent
+        LoadingComponent,
+        OrderByIdPipe,
+        OrderByNamePipe,
+        OrderBySurnamePipe
       ],
       imports: [
         BrowserModule,

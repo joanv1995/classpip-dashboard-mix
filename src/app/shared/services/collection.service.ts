@@ -16,7 +16,19 @@ export class CollectionService {
   constructor(public http: Http,
               public utilsService: UtilsService) {
   }
+   /**
+   * This method returns the CollectionCard of the id
+   * @return {CollectionCard} returns a collectionCard
+   */
+  public getCollection(id: number): Observable<CollectionCard> {
 
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    return this.http.get(AppConfig.COLLECTION_URL + '/' + id, options)
+      .map((response: Response, index: number) => CollectionCard.toObject(response.json()))
+  }
   /**
    * This method returns the list of CollectionCards in the school
    * @return {CollectionCard} returns an array of collectionCards
@@ -79,15 +91,20 @@ export class CollectionService {
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL;
-    let body = {
-      "name": collectionCard.name,
-      "num": collectionCard.num,
-      "image": collectionCard.image,
-      "createdBy": collectionCard.createdBy
-    };
 
-    return this.http.post(url,body,options)
+    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL;
+
+      let body = {
+        "name": collectionCard.name,
+        "num": collectionCard.num,
+        "image": collectionCard.image,
+        "createdBy": collectionCard.createdBy,
+        "badgeId": collectionCard.badgeId
+      };
+
+
+
+       return this.http.post(url,body,options)
       .map(response => {
         return response.json()
       })

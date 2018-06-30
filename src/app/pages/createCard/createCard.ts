@@ -88,12 +88,15 @@ export class CreateCardComponent implements OnInit {
       ((returnedCard: Card) => {
         this.returnedCard = returnedCard;
         this.loadingService.hide();
-        this.snackbar.open("Nova carta creada i introduïda a la col·lecció !");
+        this.snackbar.open("Nova carta creada i introduïda a la col·lecció !","",{duration:2000});
+
       }),
       ((error: Response) => {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+
+      this.cancel();
 
 
 

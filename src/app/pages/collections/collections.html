@@ -4,24 +4,26 @@
 
         <mat-card class = "assign-content" *ngIf ="isTeacher">
             <h5 mat-subheader>Assignar col·lecció a grup</h5>
-            <mat-form-field >
-                <mat-select [(value)]="groupSelected" placeholder="Escull el group"  [formControl]= "myControl">
 
-                  <mat-option *ngFor="let group of mygroups" [value]="group.id">
+            <mat-form-field class="formmargin" >
+              <mat-select [(value)]="collectionSelected" placeholder="Escull la col·lecció" [formControl]= "myControl">
+
+                <mat-option *ngFor="let collectionCard of collections" [value]="collectionCard.id"  (click)="showNoAssignedGroups()">
+                  {{collectionCard.name}}
+                </mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <mat-form-field  >
+                <mat-select [(value)]="groupAssign" placeholder="Escull el group">
+
+                  <mat-option *ngFor="let group of groupArray" [value]="group.id">
                     {{group.name}}
                   </mat-option>
                 </mat-select>
 
               </mat-form-field>
-              <mat-form-field class="formmargin" >
-                  <mat-select [(value)]="collectionSelected" placeholder="Escull la col·lecció" [formControl]= "myControl">
 
-                    <mat-option *ngFor="let collectionCard of collections" [value]="collectionCard.id">
-                      {{collectionCard.name}}
-                    </mat-option>
-                  </mat-select>
-
-                </mat-form-field>
                 <br>
                 <button mat-raised-button (click)="assignCollectionToGroup()">ASSIGNAR COL·LECCIÓ</button>
 
@@ -33,6 +35,9 @@
             <img matListAvatar src={{collectionCard.image}}>
 
               <h4 mat-line>{{collectionCard.name}}</h4>
+              <h4 mat-line>Id: {{collectionCard.id}}</h4>
+              <h4 mat-line>Teacher Id: {{collectionCard.createdBy}}</h4>
+
               <p mat-line>------------------------------------------------------------------------- </p>
               <p mat-line>Número de cartes de la col·lecció: {{collectionCard.num}}</p>
 
