@@ -1,0 +1,67 @@
+<div class="createQuestionnaireBadgesAssignment-content">
+
+
+
+  <h3 mat-header>Assignació de cromos</h3>
+  <br>
+  <p *ngIf="stringData[2] == null">
+    No es poden assignar cromos ja que el qüestionari no està definit per a cap grup en concret.
+  </p>
+  <p *ngIf="collections.length == 0">
+      No es poden assignar cromos ja que no hi ha cap col·lecció assignada al grup.
+    </p>
+  <mat-slide-toggle *ngIf="stringData[2] != null && collections.length !=0 " color = "secondary" [(ngModel)]="device[i]" (change)="onChange($event)">Assignar cromos</mat-slide-toggle>
+    <br>
+    <mat-form-field *ngIf="stringData[2] != null && collections.length !=0">
+        <mat-select [(value)]="collectionSelected" placeholder="Escull la col·lecció">
+
+          <mat-option *ngFor="let collectionCard of collections" [value]="collectionCard.id">
+            {{collectionCard.name}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <br>
+  <mat-list *ngIf = "device[i] && collections.length !=0">
+
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input  [(ngModel)]="ins1" placeholder="Nota del qüestionar > 9" aria-label="Number" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+                <mat-hint align="end">Quantitat de cromos del sobre</mat-hint>
+              </mat-form-field>
+        </mat-list-item>
+        <br>
+        <br>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input   [(ngModel)]="ins2" placeholder="Nota del qüestionar 7 - 8.99" aria-label="Number" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+                <mat-hint align="end">Quantitat de cromos del sobre</mat-hint>
+              </mat-form-field>
+        </mat-list-item>
+        <br>
+        <br>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input [(ngModel)]="ins3" placeholder="Nota del qüestionar: 5 - 6.99" aria-label="Number" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+                <mat-hint align="end">Quantitat de cromos del sobre</mat-hint>
+
+              </mat-form-field>
+        </mat-list-item>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+
+           <span> {{option}} Cromos</span>
+          </mat-option>
+        </mat-autocomplete>
+
+
+    </mat-list>
+
+
+
+
+    <br>
+
+    <button mat-raised-button (click)="createQuestionnaire()">{{ 'QUESTIONNAIRE.NEXT' | translate }}</button>
+    <button mat-raised-button (click)="cancel()">{{ 'QUESTIONNAIRE.BACK' | translate }}</button>

@@ -19,6 +19,7 @@ import { QuestionnaireResultsComponent } from './pages/questionnaireResults/ques
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
 import { CreateQuestionnaireBadgesAssignmentComponent} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
+import { CreateQuestionnairePackCardsAssignmentComponent} from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
 
 import { CreateQuestionnairePointsAssignmentComponent} from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
   { path: 'createQuestionnaire', component: CreateQuestionnaireComponent, canActivate: [AuthGuard] },
   { path: 'createQuestionnairePointsAssignment', component: CreateQuestionnairePointsAssignmentComponent, canActivate: [AuthGuard] },
   { path: 'createQuestionnaireBadgesAssignment', component: CreateQuestionnaireBadgesAssignmentComponent, canActivate: [AuthGuard] },
+  { path: 'createQuestionnairePackCardsAssignment', component: CreateQuestionnairePackCardsAssignmentComponent, canActivate: [AuthGuard] },
 
   { path: 'createQuestionnaireTest1', component: CreateQuestionnaireTest1Component, canActivate: [AuthGuard] },
   { path: 'createQuestionnaireTest2', component: CreateQuestionnaireTest2Component, canActivate: [AuthGuard] },

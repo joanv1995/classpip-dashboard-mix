@@ -8,6 +8,7 @@ import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService, BadgeService, SchoolService } from '../../shared/services/index';
 import { CreateQuestionnaireTest1Component } from '../../pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTextArea1Component } from '../../pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
+import { CreateQuestionnairePackCardsAssignmentComponent } from '../createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
 
 @Component({
   /*selector: 'app-createQuestionnaireTest1',*/
@@ -74,11 +75,7 @@ export class CreateQuestionnaireBadgesAssignmentComponent implements OnInit {
     }
 
     this.num = data.num;
-    for(this.ind=0;this.ind<=100;this.ind++)
-    {
-      this.options.push(this.ind);
 
-    }
 
 
   }
@@ -114,55 +111,17 @@ export class CreateQuestionnaireBadgesAssignmentComponent implements OnInit {
 
     this.setBadges();
 
+    let dialogRef1 = this.dialog.open(CreateQuestionnairePackCardsAssignmentComponent, {
+      height: '600px',
+      width: '700px',
+      data: {stringSelected: this.selectedType, stringData: this.stringData, numberData: this.numberData, num: this.num}
+      });
 
-    switch (this.selectedType)
-     {
-
-
-      case 'optionRespuestaMultiple':
-         /*Save new Questionnaire*/
-        this.questionnaireService.saveQuestionnaire(this.stringData, this.badgesArray).subscribe(
-          ((value: Questionnaire) => this.myQuestionnaire = value),
-        ((error: Questionnaire) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-
-        let dialogRef1 = this.dialog.open(CreateQuestionnaireTest1Component, {
-        height: '600px',
-        width: '700px',
-        data: {stringData: this.stringData, numberData: this.numberData, num: this.num}
-        });
-
-        dialogRef1.afterClosed().subscribe(result => {
-          this.result = result;
-          this.ngOnInit();
-        });
-        this.cancel();
-        break;
-      case 'optionRespuestaAbierta':
-                    /*Save new Questionnaire*/
-        this.questionnaireService.saveQuestionnaire(this.stringData, this.badgesArray).subscribe(
-          ((value: Questionnaire) => this.myQuestionnaire = value),
-        ((error: Questionnaire) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-        let dialogRef2 = this.dialog.open(CreateQuestionnaireTextArea1Component, {
-          height: '600px',
-          width: '700px',
-          data: {stringData: this.stringData, numberData: this.numberData, num: this.num}
-        });
-
-        dialogRef2.afterClosed().subscribe(result => {
-          this.result = result;
-          this.ngOnInit();
-        });
-        this.cancel();
-        break;
-      default:
-        break;
-    }
+      dialogRef1.afterClosed().subscribe(result => {
+        this.result = result;
+        this.ngOnInit();
+      });
+      this.cancel();
 
 
 
@@ -205,9 +164,9 @@ export class CreateQuestionnaireBadgesAssignmentComponent implements OnInit {
     }
     else
     {
-      this.badgesArray.push("0");
+      this.badgesArray = null;
     }
-
+    this.stringData.push(this.badgesArray);
 
   }
 }

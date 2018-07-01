@@ -89,13 +89,15 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.numberData.push(this.number);
 
 
-    if(this.groupselected != "none")
-
-    {
+    if(this.groupselected != "none"){
 
       this.stringData.push(this.groupselected);
 
+    }
+    else{
 
+      this.groupselected = null;
+      this.stringData.push(this.groupselected);
 
     }
     let dialogRef1 = this.dialog.open(CreateQuestionnairePointsAssignmentComponent, {

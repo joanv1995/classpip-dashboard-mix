@@ -23,6 +23,7 @@ import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/delete
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
 import { CreateQuestionnairePointsAssignmentComponent } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
 import { CreateQuestionnaireBadgesAssignmentComponent} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
+import { CreateQuestionnairePackCardsAssignmentComponent} from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
 
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
@@ -72,6 +73,7 @@ describe('AppComponent', () => {
         // pages
         CreateQuestionnairePointsAssignmentComponent,
         CreateQuestionnaireBadgesAssignmentComponent,
+        CreateQuestionnairePackCardsAssignmentComponent,
         PointsBadgesComponent,
         LoginComponent,
         HomeComponent,
