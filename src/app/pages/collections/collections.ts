@@ -135,29 +135,61 @@ export class CollectionsComponent implements OnInit {
 
   assignCollectionToGroup(){
 
-    //this.snackbar.open(this.groupAssign +"/"+this.collectionSelected,"",{duration:2000});
+    //
+    this.collectionService.getCollectionDetails(this.collectionSelected).subscribe(
+      ((cardss: Array<Card>)=> {
 
-    this.collectionService.assignCollection(this.collectionSelected, this.groupAssign).subscribe(
-      ((response: Response)=> {
-        this.groupService.getMyGroupStudents(this.groupAssign).subscribe(students => {
-          this.students = students;
-          this.students.forEach( (element) => {
-            this.collectionService.assignCollectionToStudent(element.id, this.collectionSelected).subscribe(response => {
+         //
+    this.collectionService.getCollection(+this.collectionSelected).subscribe(
+      ((collection: CollectionCard)=> {
 
-            })
-          });
-          this.snackbar.open('Collection assigned to group successfuly', '',{duration:2000});
-          this.groupAssign = "";
-          this.collectionSelected = "";
-        });
+        if(cardss.length < +collection.num)
+        {
+          this.snackbar.open("No se puede assignar una colección que no contiene la cantidad de cartas que especifica dicha colección.", "Error",{duration:2000});
+
+        }
+        else{
+
+          this.collectionService.assignCollection(this.collectionSelected, this.groupAssign).subscribe(
+            ((response: Response)=> {
+              this.groupService.getMyGroupStudents(this.groupAssign).subscribe(students => {
+                this.students = students;
+                this.students.forEach( (element) => {
+                  this.collectionService.assignCollectionToStudent(element.id, this.collectionSelected).subscribe(response => {
+
+                  })
+                });
+                this.snackbar.open('Collection assigned to group successfuly', '',{duration:2000});
+
+                this.groupAssign = "";
+                this.collectionSelected = "";
+              });
+
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+              //this.snackbar.open("Col·lecció no assignada","Error",{duration:2000});
+
+            }));
+        }
+
 
       }),
       ((error: Response) => {
         this.loadingService.hide();
         this.alertService.show(error.toString());
-        //this.snackbar.open("Col·lecció no assignada","Error",{duration:2000});
-
       }));
+
+
+
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
+
+
 
   }
  public  deleteCollection(){

@@ -7,13 +7,15 @@ export class Questionnaire {
   private _badges: string [];
   private _groupid: string;
   private _active: boolean;
+  private _packCards: number [];
 
-  constructor(id?: string, name?: string, date?: string, points?: number[], active?:boolean) {
+  constructor(id?: string, name?: string, date?: string, points?: number[], active?:boolean, packCards?: number[]) {
       this._id = id;
       this._name = name;
       this._date = date;
       this._points = points;
       this._active = active;
+      this._packCards = packCards;
 
   }
 
@@ -29,6 +31,7 @@ export class Questionnaire {
       result.groupid = object.groupid;
       result.badges = object.badges;
       result.active = object.active;
+      result.packCards = object.packCards;
     }
     return result;
   }
@@ -95,5 +98,12 @@ export class Questionnaire {
 
   public set active(value: boolean) {
     this._active = value;
+  }
+  public get packCards(): number[] {
+    return this._packCards;
+  }
+
+  public set packCards(value: number[]) {
+    this._packCards = value;
   }
 }

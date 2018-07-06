@@ -165,7 +165,7 @@ export class CollectionComponent implements OnInit {
     if(this.optionType)
     {
     switch (this.optionType){
-      case "Assignar una carta":
+      case "Assignar una carta a escollir":
         if(this.studentSelected && this.cardSelected && this.groupSelected)
         {
           this.collectionService.assignCardToStudent(this.studentSelected,this.cardSelected).subscribe(

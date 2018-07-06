@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import {FormControl, FormsModule} from '@angular/forms';
-
+import{ TranslateService} from 'ng2-translate';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Point, Card, CollectionCard, Badge } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
-import { LoadingService, UtilsService,PointService,GroupService, AlertService, QuestionnaireService, CollectionService, BadgeService, SchoolService } from '../../shared/services/index';
+import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService, CollectionService, BadgeService, SchoolService } from '../../shared/services/index';
 
 
 
@@ -19,6 +19,7 @@ export class CreateCollectionComponent implements OnInit {
   public collectionId: string;
   public name: string;
   public num: number;
+  public result: number;
 
   public image: string;
   public badgeSelected: string;
@@ -30,6 +31,7 @@ export class CreateCollectionComponent implements OnInit {
   public returnedCollection: CollectionCard;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -88,13 +90,21 @@ export class CreateCollectionComponent implements OnInit {
       ((returnedCollection: CollectionCard) => {
         this.returnedCollection = returnedCollection;
         this.loadingService.hide();
-        this.snackbar.open("Nova col·lecció creada !","",{duration:2000});
+       // this.snackbar.open("Nova col·lecció creada !","",{duration:2000});
+        this.alertService.show(this.translateService.instant('COLLECTIONS.TITLE'));
+
+        this.dialogRef.afterClosed().subscribe(result => {
+          this.result = result;
+          this.ngOnInit();
+        });
         this.cancel();
+
       }),
       ((error: Response) => {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+
 
 
 

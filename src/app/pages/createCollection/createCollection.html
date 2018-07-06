@@ -1,23 +1,24 @@
 <div class="createCollection-content">
   <h3 matLine>Nova col·lecció</h3>
   <br>
-    <mat-form-field hintLabel="Max 40 caràcters">
+    <mat-form-field hintLabel="{{'COMMON.MAX40CARACT' | translate}}">
       <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom de la col·lecció" >
     </mat-form-field>
     <br>
     <br>
 
-    <mat-form-field hintLabel="Introdueix un xifra">
-      <input matInput type="number" [(ngModel)]="num" placeholder="Quantitat de cartes de la co·lecció" >
+    <mat-form-field hintLabel="{{'COMMON.INNUMBER' | translate}}">
+      <input matInput type="number" [(ngModel)]="num" placeholder="{{'COLLECTIONS.QUANTITY' | translate}}" >
     </mat-form-field>
     <br>
     <br>
     <mat-form-field *ngIf="badges">
-        <mat-select [(value)]="badgeSelected" placeholder="Escull la insígnia guanyada si es completa la col·lecció">
+        <mat-select [(value)]="badgeSelected" placeholder="{{'COLLECTIONS.CHOOSEBADGEWON' | translate}}">
             <mat-option value="none">
-                No assignar cap insígnia
+              {{'BADGES.NOASSIGN' | translate}}
             </mat-option>
           <mat-option *ngFor="let badge of badges" [value]="badge.id">
+            <img style="vertical-align:middle;" aria-hidden src="{{badge.image}}" height="25" />
             {{badge.name}}
           </mat-option>
         </mat-select>
@@ -25,13 +26,13 @@
       </mat-form-field>
       <br>
     <br>
-    <mat-form-field hintLabel="Copiar enllaç .jpg">
-      <input matInput [(ngModel)]="image" placeholder="Imatge de la col·lecció" >
+    <mat-form-field hintLabel="{{'COMMON.PASTEIMAGE' | translate}}">
+      <input matInput [(ngModel)]="image" placeholder="{{'COLLECTIONS.IMAGEOF' | translate}}" >
     </mat-form-field>
     <br>
 
     <mat-card class="example-image" *ngIf = "image">
-      <mat-card-subtitle >Imatge de la nova col·lecció</mat-card-subtitle>
+      <mat-card-subtitle >{{'COLLECTIONS.IMAGENEW' | translate}}</mat-card-subtitle>
         <div mat-card-avatar class="example-image"></div>
 
         <img mat-card-lg-image src="{{image}}">
@@ -40,7 +41,7 @@
 
     <br>
 
-    <button mat-raised-button (click)="createNewCollection()">Guardar nova Col·lecció</button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
+    <button mat-raised-button (click)="createNewCollection()">{{'COLLECTIONS.SAVE' | translate}}</button>
+    <button mat-raised-button (click)="cancel()">{{'COMMON.CANCEL' | translate}}</button>
 
   </div>

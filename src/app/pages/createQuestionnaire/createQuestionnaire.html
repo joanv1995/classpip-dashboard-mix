@@ -24,9 +24,9 @@
   </mat-form-field>
 
   <mat-form-field *ngIf ="groups">
-      <mat-select [(value)]="groupselected" placeholder="Grupo">
+      <mat-select [(value)]="groupselected" placeholder="{{ 'GROUPS.CHOOSE' | translate }}">
           <mat-option value= "none">
-              No asignar grupo
+              {{ 'GROUPS.NOASSIGN' | translate }}
             </mat-option>
         <mat-option *ngFor="let group of groups" [value]="group.id">
           {{group.name}}

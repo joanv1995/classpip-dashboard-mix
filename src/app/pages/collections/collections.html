@@ -1,12 +1,11 @@
 <div class="collection-content">
-    <h3 mat-header>Col·leccions</h3>
-        <h3 mat-subheader>Llista de col·leccions</h3>
+    <h3 mat-header>{{'COLLECTIONS.TITLE' | translate}}</h3>
 
         <mat-card class = "assign-content" *ngIf ="isTeacher">
-            <h5 mat-subheader>Assignar col·lecció a grup</h5>
+            <h5 mat-subheader>{{'COLLECTIONS.ASSIGNTOGROUP' | translate}}</h5>
 
             <mat-form-field class="formmargin" >
-              <mat-select [(value)]="collectionSelected" placeholder="Escull la col·lecció" [formControl]= "myControl">
+              <mat-select [(value)]="collectionSelected" placeholder="{{'COLLECTIONS.CHOOSE' | translate}}" [formControl]= "myControl">
 
                 <mat-option *ngFor="let collectionCard of collections" [value]="collectionCard.id"  (click)="showNoAssignedGroups()">
                   {{collectionCard.name}}
@@ -15,7 +14,7 @@
 
             </mat-form-field>
             <mat-form-field  >
-                <mat-select [(value)]="groupAssign" placeholder="Escull el group">
+                <mat-select [(value)]="groupAssign" placeholder="{{'GROUPS.CHOOSE' | translate}}">
 
                   <mat-option *ngFor="let group of groupArray" [value]="group.id">
                     {{group.name}}
@@ -25,32 +24,32 @@
               </mat-form-field>
 
                 <br>
-                <button mat-raised-button (click)="assignCollectionToGroup()">ASSIGNAR COL·LECCIÓ</button>
+                <button mat-raised-button (click)="assignCollectionToGroup()">{{'COLLECTIONS.ASSIGN' | translate}}</button>
 
         </mat-card>
 
         <mat-nav-list *ngIf="collections">
-
+        <h3 mat-subheader>{{'COLLECTIONS.LISTTITLE' | translate}}</h3>
         <mat-list-item *ngFor="let collectionCard  of collections" (click)="goToCollectionDetails(collectionCard)" >
             <img matListAvatar src={{collectionCard.image}}>
 
               <h4 mat-line>{{collectionCard.name}}</h4>
-              <h4 mat-line>Id: {{collectionCard.id}}</h4>
-              <h4 mat-line>Teacher Id: {{collectionCard.createdBy}}</h4>
+              <h4 mat-line>{{'COLLECTIONS.ID' | translate}}: {{collectionCard.id}}</h4>
+              <h4 mat-line>{{'TEACHER.ID' | translate}}: {{collectionCard.createdBy}}</h4>
 
               <p mat-line>------------------------------------------------------------------------- </p>
-              <p mat-line>Número de cartes de la col·lecció: {{collectionCard.num}}</p>
+              <p mat-line>{{'COLLECTIONS.NUMCARDS' | translate}}: {{collectionCard.num}}</p>
 
         </mat-list-item>
         <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
       <ol *ngIf ="isTeacher">
-          <button mat-raised-button (click)="createCollection()">Crear nova col·lecció</button>
+          <button mat-raised-button (click)="createCollection()">{{'COLLECTIONS.CREATE' | translate}}</button>
       </ol>
       <ol *ngIf="isTeacher">
           <mat-form-field>
-            <input matInput [(ngModel)]="collId" placeholder="Col·lecció ID">
+            <input matInput [(ngModel)]="collId" placeholder="{{'COLLECTIONS.ID' | translate}}">
           </mat-form-field>
-          <button mat-raised-button (click)="deleteCollection()">Eliminar Col·lecció</button>
+          <button mat-raised-button (click)="deleteCollection()">{{'COLLECTIONS.DELETE' | translate}}</button>
       </ol>
   </div>

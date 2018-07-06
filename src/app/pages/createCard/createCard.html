@@ -1,13 +1,13 @@
 <div class="createCard-content">
   <h3 matLine>Nou cromo per la col·lecció</h3>
   <br>
-    <mat-form-field hintLabel="Max 40 caràcters">
-      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="Nom del cromo">
+    <mat-form-field hintLabel="{{'COMMON.MAX40CARACT' | translate}}">
+      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="{{'CARDS.NAME' | translate}}">
     </mat-form-field>
     <br>
 
-    <mat-form-field hintLabel="Escull un dels nivells">
-      <input [(ngModel)]="rank" placeholder="Nivell del cromo" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+    <mat-form-field hintLabel="{{'CARDS.CHOOSELEVEL' | translate}}">
+      <input [(ngModel)]="rank" placeholder="{{'CARDS.LEVELCARD' | translate}}" matInput [formControl]="myControl"  [matAutocomplete]="auto">
     </mat-form-field>
 
     <mat-autocomplete #auto="matAutocomplete">
@@ -17,8 +17,8 @@
     </mat-autocomplete>
     <br>
 
-    <mat-form-field hintLabel="Escull un dels ratios ">
-      <input [(ngModel)]="ratio" placeholder="Ratio d'aparició de la carta" matInput [formControl]="myControl"  [matAutocomplete]="auto2">
+    <mat-form-field hintLabel="{{'CARDS.CHOOSERATIO' | translate}}">
+      <input [(ngModel)]="ratio" placeholder="{{'CARDS.RATIOCARD' | translate}}" matInput [formControl]="myControl"  [matAutocomplete]="auto2">
     </mat-form-field>
 
     <mat-autocomplete #auto2="matAutocomplete">
@@ -27,13 +27,13 @@
       </mat-option>
     </mat-autocomplete>
     <br>
-    <mat-form-field hintLabel="Copiar enllaç .jpg">
-      <input matInput [(ngModel)]="image" placeholder="Imatge de la carta">
+    <mat-form-field hintLabel="{{'COMMON.PASTEIMAGE' | translate}}">
+      <input matInput [(ngModel)]="image" placeholder="{{'CARDS.IMAGEOF' | translate}}">
     </mat-form-field>
     <br>
 
     <mat-card class="example-image" *ngIf = "image">
-      <mat-card-subtitle >Imatge de la nova carta</mat-card-subtitle>
+      <mat-card-subtitle >{{'CARDS.IMAGENEW' | translate}}</mat-card-subtitle>
         <div mat-card-avatar class="example-image"></div>
 
         <img mat-card-lg-image src="{{image}}">

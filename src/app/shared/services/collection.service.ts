@@ -99,7 +99,8 @@ export class CollectionService {
         "num": collectionCard.num,
         "image": collectionCard.image,
         "createdBy": collectionCard.createdBy,
-        "badgeId": collectionCard.badgeId
+        "badgeId": collectionCard.badgeId,
+        //"teacherId": this.utilsService.currentUser.userId
       };
 
 

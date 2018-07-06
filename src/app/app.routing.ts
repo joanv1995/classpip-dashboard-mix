@@ -16,6 +16,8 @@ import { CreateCardComponent } from './pages/createCard/createCard';
 
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
 import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
+import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
+
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
 import { CreateQuestionnaireBadgesAssignmentComponent} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
@@ -38,12 +40,15 @@ import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollec
 import { LanguageComponent } from './pages/language/language';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
+import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
 
 const appRoutes: Routes = [
 
   // authenticated pages
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
+  { path: 'groupStudents/:id', component: GroupStudentsComponent, canActivate: [AuthGuard] },
+
   { path: 'pointsbadges', component: PointsBadgesComponent, canActivate: [AuthGuard] },
   { path: 'collections', component: CollectionsComponent, canActivate: [AuthGuard] },
   { path: 'collection/:id', component: CollectionComponent, canActivate: [AuthGuard] },
@@ -57,6 +62,7 @@ const appRoutes: Routes = [
 
 
   { path: 'questionnaires', component: QuestionnairesComponent, canActivate: [AuthGuard] },
+  { path: 'questionnaireAwards', component: QuestionnaireAwardsComponent, canActivate: [AuthGuard]},
   { path: 'questionnaire/:id', component: QuestionnaireComponent, canActivate: [AuthGuard] },
   { path: 'questionnaireResults/:id', component: QuestionnaireResultsComponent, canActivate: [AuthGuard] },
   { path: 'deleteQuestionnaire', component: DeleteQuestionnaireComponent, canActivate: [AuthGuard] },

@@ -2,7 +2,7 @@
   <mat-card class="cardcontent" *ngIf ="isTeacher">
       <h5 mat-subheader>Assignar cromos a estudiant</h5>
       <mat-form-field class="optionForm" >
-          <mat-select [(value)]="optionType" placeholder="Escull el tipus d'assignació"  [formControl]= "myControl">
+          <mat-select [(value)]="optionType" placeholder="{{'COMMON.TYPEASSIGNMENTCHOOSE' | translate}}"  [formControl]= "myControl">
               <mat-option *ngFor="let option of options" [value]="option">
                   {{option}}
                 </mat-option>
@@ -10,7 +10,7 @@
           </mat-select>
       </mat-form-field>
       <mat-form-field class = "formMargin" *ngIf = "optionType =='Assignar una carta a escollir'" >
-          <mat-select [(value)]="cardSelected" placeholder="Escull la carta"  [formControl]= "myControl">
+          <mat-select [(value)]="cardSelected" placeholder="{{'CARDS.CHOOSE' | translate}}"  [formControl]= "myControl">
               <mat-option *ngFor="let card of collectionCards" [value]="card.id">
                   {{card.name}} ({{card.rank}})
                 </mat-option>
@@ -19,7 +19,7 @@
       </mat-form-field>
       <br>
       <mat-form-field >
-          <mat-select [(value)]="groupSelected" placeholder="Escull el group"  [formControl]= "myControl" >
+          <mat-select [(value)]="groupSelected" placeholder="{{'GROUPS.CHOOSE' | translate}}"  [formControl]= "myControl" >
 
             <mat-option *ngFor="let group of collectionGroups" [value]="group.id" (click)="showStudents()">
               {{group.name}}
@@ -28,7 +28,7 @@
       </mat-form-field>
 
       <mat-form-field  class = "formMargin"  >
-          <mat-select [(value)]="studentSelected" placeholder="Escull l'estudiant" [formControl]= "myControl">
+          <mat-select [(value)]="studentSelected" placeholder="{{'STUDIENTS.CHOOSE' | translate}}" [formControl]= "myControl">
 
             <mat-option *ngFor="let student of collectionStudents" [value]="student.id">
               {{student.name}}
@@ -36,7 +36,7 @@
           </mat-select>
       </mat-form-field>
         <br>
-        <button mat-raised-button (click)="assignCardsToStudent()">ASSIGNAR CARTES</button>
+        <button mat-raised-button (click)="assignCardsToStudent()">{{'CARDS.ASSIGN' | translate}}</button>
 
 
 
@@ -45,22 +45,23 @@
 
 
     <mat-nav-list *ngIf="collectionCards && isTeacher" class="cardList">
-        <h3 mat-subheader>Cartes de la col·lecció</h3>
+        <h3 mat-subheader>{{'CARDS.OFCOLLECTION' | translate}}</h3>
         <mat-list-item *ngFor="let card  of collectionCards" >
 
-            <img matListAvatar src={{card.image}}>
+
+            <img class="imagelist" src={{card.image}}>
             <h3 matLine>{{card.name}}</h3>
             <br>
             <p matLine>
-                <span>Id: {{card.id}}</span>
+                <span>{{'CARDS.ID' | translate}}: {{card.id}}</span>
 
               </p>
             <p matLine>
-              <span>Nivell: {{card.rank}}</span>
+              <span>{{'CARDS.LEVEL' | translate}}: {{card.rank}}</span>
 
             </p>
             <p matLine>
-                <span>Ratio: {{card.ratio}}</span>
+                <span>{{'CARDS.RATIO' | translate}}: {{card.ratio}}</span>
 
               </p>
 
@@ -70,13 +71,13 @@
          <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
       <ol *ngIf ="isTeacher">
-        <button mat-raised-button (click)="createCard()">Crear nou cromo</button>
+        <button mat-raised-button (click)="createCard()">{{'CARDS.CREATE' | translate}}</button>
     </ol>
     <ol *ngIf ="isTeacher">
         <mat-form-field >
-          <input matInput [(ngModel)]="cardId" placeholder="Cromo ID">
+          <input matInput [(ngModel)]="cardId" placeholder="{{'CARDS.ID' | translate}}">
         </mat-form-field>
-        <button mat-raised-button (click)="deleteCard()">Eliminar cromo de la col·lecció</button>
+        <button mat-raised-button (click)="deleteCard()">{{'CARDS.DELETE' | translate}}</button>
     </ol>
 
   </div>

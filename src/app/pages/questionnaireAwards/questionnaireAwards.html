@@ -1,0 +1,89 @@
+<div class="questionnaireAwards-content">
+<mat-card class="card-content" *ngIf = "quest.points">
+    <mat-list>
+        <h3 mat-subheader>{{'QUESTIONNAIRE.TEXTPOINTS'| translate}}</h3>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK1'| translate}}</p>
+        <p> {{data.questionnaireObj.points[0]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK2'| translate}}</p>
+        <p> {{data.questionnaireObj.points[1]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK3'| translate}}</p>
+        <p> {{data.questionnaireObj.points[2]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK4'| translate}}</p>
+        <p> {{data.questionnaireObj.points[3]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK5'| translate}}</p>
+        <p> {{data.questionnaireObj.points[4]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK6'| translate}}</p>
+        <p> {{data.questionnaireObj.points[5]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p mat-line>{{'QUESTIONNAIRE.MARK7'| translate}}</p>
+        <p> {{data.questionnaireObj.points[6]}} {{'POINTS.TITLE'| translate}}</p>
+    </mat-list-item>
+    </mat-list>
+
+</mat-card>
+<mat-card class="card-content" *ngIf = "quest.badges">
+  <mat-list>
+      <h3 mat-subheader>{{'QUESTIONNAIRE.TEXTBADGES'| translate}}</h3>
+      <mat-list-item>
+          <p mat-line>{{'QUESTIONNAIRE.MARK8'| translate}} </p>
+          <p align = "end">{{'BADGES.SINGULAR'| translate}} {{badges[0]}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <p mat-line>{{'QUESTIONNAIRE.MARK9'| translate}}</p>
+          <p align = "end">{{'BADGES.SINGULAR'| translate}} {{badges[1]}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <p mat-line>{{'QUESTIONNAIRE.MARK10'| translate}}</p>
+          <p align = "end">{{'BADGES.SINGULAR'| translate}} {{badges[2]}}</p>
+      </mat-list-item>
+  </mat-list >
+
+
+</mat-card>
+<mat-card class="card-content" *ngIf = "quest.packCards">
+    <mat-list >
+        <h3 mat-subheader>{{'CARDS.OFCOLLECTION'| translate}} {{collection.name}} {{'QUESTIONNAIRE.TEXTCARDS1'| translate}}</h3>
+        <mat-list-item>
+            <p mat-line>{{'QUESTIONNAIRE.MARK8'| translate}} </p>
+            <p align = "end">{{quest.packCards[1]}} cartes aleatòries</p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <p mat-line>{{'QUESTIONNAIRE.MARK9'| translate}}</p>
+            <p align = "end">{{quest.packCards[2]}} cartes aleatòries</p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <p mat-line>{{'QUESTIONNAIRE.MARK10'| translate}}</p>
+            <p align = "end">{{quest.packCards[3]}} cartes aleatòries</p>
+        </mat-list-item>
+    </mat-list>
+
+
+
+</mat-card>
+    <br>
+
+    <button mat-raised-button (click)="cancel()">{{'COMMON.CANCEL'| translate}}</button>
+
+  </div>

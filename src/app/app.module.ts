@@ -71,6 +71,8 @@ import 'rxjs/add/operator/finally';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
+import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
 
 
 
@@ -89,6 +91,7 @@ export function createTranslateLoader(http: Http) {
     LoginComponent,
     HomeComponent,
     GroupsComponent,
+    GroupStudentsComponent,
     PointsBadgesComponent,
     CollectionsComponent,
     CollectionComponent,
@@ -103,6 +106,7 @@ export function createTranslateLoader(http: Http) {
     CreateQuestionnairePackCardsAssignmentComponent,
     QuestionnairesComponent,
     QuestionnaireComponent,
+    QuestionnaireAwardsComponent,
     QuestionnaireResultsComponent,
     DeleteQuestionnaireComponent,
     CreateQuestionnaireComponent,

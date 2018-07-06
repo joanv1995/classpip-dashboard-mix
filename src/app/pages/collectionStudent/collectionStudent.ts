@@ -32,9 +32,9 @@ export class CollectionStudentComponent implements OnInit {
   public collectionCards: Array<Card>;
   public assignedCards: Array<Card>;
   public cards: Array<Card>;
-  public badgeWon: Badge;
+  public badgeWon: Badge = new Badge();
 
-  public finalCards: Array<Card>;
+  public finalCards: Array<Card> = new Array<Card>();
 
   public collectionGroups: Array<Group>;
   public collectionStudents: Array<Student>;
@@ -120,7 +120,6 @@ export class CollectionStudentComponent implements OnInit {
           ((value: Array<Card>) => {
             let allCards : Array<Card> = value;
             this.cards = allCards.sort((n1,n2)=> +n1.id - +n2.id )
-            this.finalCards = Array<Card>();
             let unknownCard = new Card();
 
             unknownCard.name="Desconocida";

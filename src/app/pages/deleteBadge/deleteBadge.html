@@ -1,5 +1,5 @@
 <div class="deleteBadge-content">
-<h3 mat-subheader>Segur que vols eliminar la Insígnia {{data.name}}?</h3>
+<h3 mat-subheader>{{ 'BADGES.CONFIRMDELETE' | translate }} {{data.name}}?</h3>
 <button mat-raised-button (click)="deleteBadge()">{{ 'QUESTIONNAIRE.DELETE2' | translate }}</button>
 <button mat-raised-button (click)="cancel()">{{ 'QUESTIONNAIRE.CANCEL' | translate }}</button>
 </div>

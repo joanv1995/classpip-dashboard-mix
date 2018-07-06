@@ -1,11 +1,20 @@
 <div class="groups-content">
-  <mat-list *ngIf="groups">
+  <mat-nav-list *ngIf="groups && isTeacher">
     <h3 mat-header>{{ 'GROUPS.TITLE' | translate }}</h3>
-    <h3 mat-subheader>Llistat de grups</h3>
+    <h3 mat-subheader>{{ 'GROUPS.LIST' | translate }}</h3>
+    <mat-list-item *ngFor="let group of groups" (click) = "showStudents(group)">
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <h4 mat-line>{{group.name}}</h4>
+      <p mat-line>{{group.grade.name}} {{group.matter.name}}</p>
+    </mat-list-item>
+  </mat-nav-list>
+  <mat-nav-list *ngIf="groups && !isTeacher">
+    <h3 mat-header>{{ 'GROUPS.TITLE' | translate }}</h3>
+    <h3 mat-subheader>{{ 'GROUPS.LIST' | translate }}</h3>
     <mat-list-item *ngFor="let group of groups">
       <mat-icon mat-list-icon>folder</mat-icon>
       <h4 mat-line>{{group.name}}</h4>
       <p mat-line>{{group.grade.name}} {{group.matter.name}}</p>
     </mat-list-item>
-  </mat-list>
+  </mat-nav-list>
 </div>

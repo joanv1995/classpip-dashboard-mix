@@ -1,5 +1,5 @@
 <div class="deleteBadge-content">
-<h3 mat-subheader>Segur que vols eliminar la Col·lecció {{data.name}}?</h3>
+<h3 mat-subheader>{{ 'COLLECTIONS.CONFIRMDELETE' | translate }} {{data.name}}?</h3>
 <button mat-raised-button (click)="deleteCollection()">{{ 'QUESTIONNAIRE.DELETE2' | translate }}</button>
 <button mat-raised-button (click)="cancel()">{{ 'QUESTIONNAIRE.CANCEL' | translate }}</button>
 </div>

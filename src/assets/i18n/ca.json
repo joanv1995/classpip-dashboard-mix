@@ -26,18 +26,41 @@
     "SCHOOLADMIN": "Director d'escola"
   },
   "GROUPS": {
-    "TITLE": "Grups"
+    "TITLE": "Grups",
+    "LIST": "Llistat de grups",
+	"ID": "Id. Grup",
+	"CHOOSE": "Escull el grup",
+	"NOASSIGN": "No assignar grup"
+
+  },
+  "TEACHER": {
+    "ID": "Id. Professor"
+
+  },
+  "STUDIENTS": {
+    "ID": "Id. Estudiant",
+    "NAME": "Nom",
+    "AVATAR":"Avatar",
+    "SURNAME":"Cognom",
+    "EMAIL": "Email",
+    "TITLE": "Estudiants",
+	"CHOOSE": "Escull l'estudiant",
+	"SHOW": "Mostrar estudiants"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",
     "ID": "ID del Qüestionari:",
     "DELETE": "Eliminar Qüestionaris",
-    "CREATE": "Crear nou Qüestionaris"
+    "CREATE": "Crear nou Qüestionaris",
+	"LIST": "Llista de qüestionaris",
+	"MYQUESTIONNAIRES": "Els meus qüestionaris"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Resultats Qüestionaris",
     "ID_STUDENT": "ID Estudiant",
     "STUDENT": "Estudiant",
+    "CREATED": "Punt creat correctament!",
+    "DELETED": "Qüestionari eliminat correctament!",
     "CORRECT_ANSWER": "Preguntes correctes",
     "NO_CORRECT_ANSWER": "Preguntes incorrectes",
     "RESULT": "Resultat",
@@ -68,7 +91,21 @@
     "TEXT9": "Tipus de Qüestionari",
     "TEXT10": "Resposta oberta",
     "TEXT11": "Resposta múltiple",
-    "TEXT12": "Introduir la data"
+    "TEXT12": "Introduir la data",
+	"MARK1": "Nota del qüestionari: 10",
+	"MARK2": "Nota del qüestionari: 9 - 9.99",
+	"MARK3": "Nota del qüestionari: 8 - 8.99",
+	"MARK4": "Nota del qüestionari: 7 - 7.99",
+	"MARK5": "Nota del qüestionari: 6 - 6.99",
+	"MARK6": "Nota del qüestionari: 5 - 5.99",
+	"MARK7": "Nota del qüestionari: 0 - 4.99",
+	"MARK8": "Nota del qüestionari: 9 - 10",
+	"MARK9": "Nota del qüestionari: 7 - 8.99",
+  "MARK10": "Nota del qüestionari: 5 - 6.99",
+  "TEXTPOINTS": "Punts guanyats segons la nota del quüestionari",
+  "TEXTBADGES": "Insígnia guanyada  segons la nota del quüestionari",
+  "TEXTCARDS1": "guanyades  segons la nota del quüestionari"
+
   },
   "ERROR": {
     "LOGIN_FAILED": "El nom d'usuari i/o contrasenya són invàlides.",
@@ -81,8 +118,121 @@
     "BADGESTITLE": "Insígnies",
     "CREATEPOINT": "Crear punt",
     "CREATEBADGE": "Crear insígnia",
-    "POINTID": "Id. Punt: ",
-    "BADGEID": "Id. Insígnia: "
+    "POINTID": "Id. Punt",
+    "BADGEID": "Id. Insígnia"
+
+  },
+  "POINTS": {
+    "TITLE": "Punts",
+  "LIST": "Llista de punts",
+  "CREATED": "Punt creat correctament!",
+	"MYPOINTS": "Els meus punts",
+	"CHOOSE": "Escull el punt",
+    "CREATE": "Crear punt",
+    "DELETED": "Punt eliminat correctament!",
+
+	"IMAGE": "Imatge del punt",
+	"IMAGENEW": "Imatge del nou punt",
+    "NAMEOF": "Nom del punt",
+	"SAVE": "Guardar nou punt",
+    "IMAGEOF": "Imatge del punt",
+    "VALUEOF": "Valor del punt",
+    "NUM": "Número de punts",
+    "TOTAL": "Puntuació total",
+	"STUDIENTS": "Puntuació dels alumnes",
+    "ASSIGN": "Assignar punts",
+	"DELETE": "Eliminar punt",
+	"SEND": "Enviar punts",
+    "OBTAINED": "Punts obtinguts",
+    "DESCOP": "Sumatori dels punts obtinguts per el valor del punt",
+    "SINGULAR": "Punt",
+    "CORASSIGN": "Punts assignats correctament",
+	"CONFIRMDELETE": "Segur que vols eliminar el Punt"
+  },
+  "BADGES": {
+    "TITLE": "Insígnies",
+  "LIST": "Llista d'insígnies ",
+  "CREATED": "Insígnia creada correctament!",
+  "DELETED": "Insígnia eliminada correctament!",
+	"IMAGE": "Imatge de la insígnia",
+	"IMAGENEW": "Imatge de la nova insígnia",
+	"MYBADGES": "Les meves insígnies",
+    "CREATE": "Crear insígnia",
+	"CHOOSE": "Escull la insígnia",
+    "NAMEOF": "Nom de la insígnia",
+    "IMAGEOF": "Imatge de la insígnia",
+	"SAVE": "Guardar nova insígnia",
+    "VALUEOF": "Valor de la insígnia",
+    "NUM": "Número d'insígnies",
+    "TOTAL": "Insígnies totals",
+    "ASSIGN": "Assignar insígnies",
+	"SEND": "Enviar insígnia",
+    "SINGULAR": "Insígnia",
+	"MAXVALUE" : "Insígnia de màxim valor",
+	"MEDIUMVALUE" : "Insígnia de valor mig",
+	"LOWVALUE" : "Insígnia de valor baix",
+	"DELETE": "Eliminar insígnia",
+    "CORASSIGN": "Insígnies asignades correctament",
+	"NOASSIGN": "No assignar cap insígnia",
+	"CONFIRMDELETE": "Segur que vols eliminar la Insígnia"
+  },
+  "COLLECTIONS":{
+	"ID": "Id. Col·lecció",
+	"FINISHCOLLECTION": "Premi per acabar la col·lecció",
+  "CREATE": "Crear nova col·lecció",
+  "DELETED": "Col·lecció eliminada correctament!",
+  "TITLE": "Col·leccions",
+  "CREATED": "Col·lecció creada correctament!",
+	"DELETE": "Eliminar col·lecció",
+  "LISTTITLE": "Llista de col·leccions",
+  "ASSIGNTOGROUP": "Assignar col·lecció a grup",
+	"IMAGEOF": "Imatge de la col·lecció",
+	"IMAGENEW": "Imatge de la nova col·lecció",
+	"SAVE": "Guardar nova col·lecció",
+	"ASSIGN": "Assignar col·lecció",
+	"CHOOSE": "Escull la col·lecció",
+	"NAME": "Nom de la col·lecció",
+	"QUANTITY": "Quantitat de cartes de la col·lecció",
+	"NUMCARDS": "Nombre de cartes de la col·lecció",
+	"CHOOSEBADGEWON": "Escull la insígnia guanyada si es completa la col·lecció",
+	"CONFIRMDELETE": "Segur que vols eliminar la Col·lecció"
+
+  },
+   "CARDS":{
+  "ID": "Id. Cromo",
+  "CREATED": "Cromo creat correctament!",
+  "DELETED": "Cromo eliminat correctament!",
+	"LEVEL": "Nivell",
+	"RATIO": "Ratio d'aparició",
+	"CHOOSELEVEL": "Escull un dels nivells",
+	"CHOOSERATIO": "Escull un dels ratios",
+	"LEVELCARD": "Nivell o qualitat del cromo",
+	"RATIOCARD": "Ratio d'aparició del cromo",
+    "TITLE": "Cromos",
+	"NAME": "Nom del cromo",
+	"IMAGEOF": "Imatge del cromo",
+	"IMAGENEW": "Imatge del nou cromo",
+	"CREATE": "Crear nou cromo",
+	"DELETE": "Eliminar cromo de la col·lecció",
+	"OFCOLLECTION": "Cromos de la col·lecció",
+	"CHOOSE": "Escull el cromo",
+	"ASSIGN": "Assignar cromos",
+	"ASSIGNFAIL1": "No es poden assignar cromos ja que el qüestionari no està definit per a cap grup.",
+	"ASSIGNFAIL2": "No es poden assignar cromos ja que no hi ha cap col·lecció assignada al grup.",
+  "CONFIRMDELETE": "Segur que vols eliminar el Cromo",
+  "GIVEN": "cartes aleatòries"
+
+  },
+  "COMMON":{
+	"TYPEASSIGNMENTCHOOSE": "Escull el tipus d'assignació",
+    "CHOOSEAMOUNT": "Escull la quantitat",
+  "MAX40CARACT": "Max. 40 caràcters",
+  "AWARDS": "Premis",
+    "MAX1NUMBER": "Max. 1 xifra",
+	"MAX3NUMBER": "Max. 3 xifres",
+	"PASTEIMAGE": "Copiar enllaç .jpg",
+	"CANCEL": "Cancelar",
+	"INNUMBER": "Introdueix una xifra"
 
   }
 }

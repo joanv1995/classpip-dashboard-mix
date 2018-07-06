@@ -1,0 +1,29 @@
+.questionnnaireAwards-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.questionnnaireAwards-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionnnaireAwards-content > * {
+  width: 100%;
+  
+}
+.example-image {
+  max-width: 150px;
+}
+.image-size{
+
+  max-width: 25px;
+  max-height: 25px;
+
+}
+.card-content{
+
+  background-color: rgba(184, 243, 253, 0.404)
+
+
+}

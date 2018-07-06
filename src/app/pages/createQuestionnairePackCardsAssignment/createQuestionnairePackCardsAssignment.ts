@@ -95,6 +95,7 @@ export class CreateQuestionnairePackCardsAssignmentComponent implements OnInit {
   }
 };
   ngOnInit(): void {
+
     this.collectionService.getCollections().subscribe(
       ((collections: Array<CollectionCard>) => {
         this.loadingService.hide();

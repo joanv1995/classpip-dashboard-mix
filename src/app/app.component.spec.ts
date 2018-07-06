@@ -17,6 +17,8 @@ import { CollectionComponent } from './pages/collection/collection';
 import { CreateCardComponent } from './pages/createCard/createCard';
 
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
+import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
+
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
 import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
@@ -59,6 +61,7 @@ import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
 import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
+import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
 
 
 export function createTranslateLoader(http: Http) {
@@ -78,6 +81,7 @@ describe('AppComponent', () => {
         LoginComponent,
         HomeComponent,
         GroupsComponent,
+        GroupStudentsComponent,
         CollectionsComponent,
         CollectionComponent,
         CollectionStudentComponent,
@@ -88,6 +92,7 @@ describe('AppComponent', () => {
         QuestionnairesComponent,
         QuestionnaireComponent,
         QuestionnaireResultsComponent,
+        QuestionnaireAwardsComponent,
         DeleteQuestionnaireComponent,
         CreateQuestionnaireComponent,
         CreatePointComponent,

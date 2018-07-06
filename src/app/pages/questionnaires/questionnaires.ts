@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
 import { DeleteQuestionnaireComponent } from '../../pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from '../../pages/createQuestionnaire/createQuestionnaire';
+import { QuestionnaireAwardsComponent } from '../questionnaireAwards/questionnaireAwards';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class QuestionnairesComponent implements OnInit {
   myGroups: Array<Group> = new Array<Group>();
   name: number;
   resultCreate: number;
+  resultAwards: number;
   device: any = [];
   isTeacher: boolean = false;
 
@@ -170,6 +172,23 @@ export class QuestionnairesComponent implements OnInit {
       }));
 
   }
+  public showAwards(questionnaire: Questionnaire)
+  {
+    const dialogRef = this.dialog.open(QuestionnaireAwardsComponent, {
+      height: '600px',
+      width: '700px',
+      data: { questionnaireObj: questionnaire}
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.resultAwards = result;
+      this.ngOnInit();
+    });
+
+  }
+
+
 
 
 }

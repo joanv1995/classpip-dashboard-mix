@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Login, Group, Role } from '../../shared/models/index';
+import { Login, Group, Role, Student } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService } from '../../shared/services/index';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-groups',
-  templateUrl: './groups.html',
-  styleUrls: ['./groups.scss']
+  //selector: 'app-groups',
+  templateUrl: './groupStudents.html',
+  styleUrls: ['./groupStudents.scss']
 })
-export class GroupsComponent implements OnInit {
-  public returnUrl: string;
-  public groups: Array<Group>;
-  public isTeacher: boolean = false;
+export class GroupStudentsComponent implements OnInit {
+  public groupId: string;
+  public students: Array<Student>;
+  public sub: any;
 
   constructor(
     public route: ActivatedRoute,
@@ -28,15 +28,16 @@ export class GroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/groupStudents';
 
+    this.sub = this.route.params.subscribe(params => {
+      this.groupId = params['id'];
+    });
+    if (this.utilsService.role === Role.TEACHER) {
 
-    if (this.utilsService.role === Role.TEACHER || this.utilsService.role === Role.STUDENT) {
-      if(this.utilsService.role === Role.TEACHER){this.isTeacher = true;}
       this.loadingService.show();
-      this.groupService.getMyGroups().subscribe(
-        ((groups: Array<Group>) => {
-          this.groups = groups.sort((n1,n2)=> +n1.id - +n2.id );
+      this.groupService.getMyGroupStudents(this.groupId).subscribe(
+        ((st: Array<Student>) => {
+          this.students = st.sort((n1,n2)=> +n1.id - +n2.id );
           this.loadingService.hide();
         }),
         ((error: Response) => {
@@ -46,11 +47,6 @@ export class GroupsComponent implements OnInit {
     }
   }
 
-  showStudents(group: Group)
-  {
-    this.router.navigate([this.returnUrl, group.id]);
 
-
-  }
 
 }
