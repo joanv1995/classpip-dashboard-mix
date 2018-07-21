@@ -5,6 +5,7 @@ import { Login, Group, Role, Questionnaire, Question } from '../../shared/models
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
 import { CreateQuestionnaireTextArea1Component } from '../../pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
+import { TranslateService } from 'ng2-translate';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class CreateQuestionnaireTextArea2Component implements OnInit {
   public urlImage: string;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -82,7 +84,8 @@ export class CreateQuestionnaireTextArea2Component implements OnInit {
 
   createQuestionnaire(): void {
 
-    this.num += 1;
+    this.questionData = [];
+
     this.questionData.push(this.question);
     this.questionData.push(this.answer1);
     this.questionData.push(this.answer2);
@@ -91,6 +94,15 @@ export class CreateQuestionnaireTextArea2Component implements OnInit {
     this.questionData.push(this.correctAnswer);
     this.questionData.push(this.selected);
     this.questionData.push(this.urlImage);
+    if(!this.question)
+    {
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
+
+    }
+    else{
+
+      this.num += 1;
+
 
     if ( (this.num) < this.numberQuestions) {
 
@@ -112,7 +124,9 @@ export class CreateQuestionnaireTextArea2Component implements OnInit {
     } else {
 
       this.questionnaireService.postQuestionnaireQuestions(this.numberData, this.questionData).subscribe(
-        ((value: Question) => this.myQuestion = value),
+        ((value: Question) => {this.myQuestion = value;
+          this.alertService.show(this.translateService.instant('QUESTIONNAIRE.CREATED'));
+        }),
       ((error: Question) => {
           this.loadingService.hide();
           this.alertService.show(error.toString());
@@ -125,4 +139,5 @@ export class CreateQuestionnaireTextArea2Component implements OnInit {
         this.cancel();
     }
   }
+}
 }

@@ -2,19 +2,16 @@
 
   <mat-form-field hintLabel="{{ 'QUESTIONNAIRE.TEXT3' | translate }}">
     <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="{{ 'QUESTIONNAIRE.TEXT4' | translate }}">
-    <mat-hint align="end">{{input.value?.length || 0}}/40</mat-hint>
   </mat-form-field>
-
+  <br>
   <mat-form-field hintLabel="{{ 'QUESTIONNAIRE.TEXT5' | translate }}">
-    <input matInput #input maxlength="4" [(ngModel)]="time" placeholder="{{ 'QUESTIONNAIRE.TEXT6' | translate }}">
-    <mat-hint align="end">{{input.value?.length || 0}}/4</mat-hint>
+    <input matInput #input maxlength="4" type="number" [(ngModel)]="time" placeholder="{{ 'QUESTIONNAIRE.TEXT6' | translate }}">
   </mat-form-field>
-
+  <br>
   <mat-form-field hintLabel="{{ 'QUESTIONNAIRE.TEXT7' | translate }}">
-    <input matInput #input maxlength="100" [(ngModel)]="number" placeholder="{{ 'QUESTIONNAIRE.TEXT8' | translate }}">
-    <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
+    <input matInput #input maxlength="100" [(ngModel)]="number" type="number" placeholder="{{ 'QUESTIONNAIRE.TEXT8' | translate }}">
   </mat-form-field>
-
+  <br>
   <mat-form-field>
     <mat-select [(value)]="selected" placeholder="{{ 'QUESTIONNAIRE.TEXT9' | translate }}">
       <mat-option value="optionRespuestaAbierta">{{ 'QUESTIONNAIRE.TEXT10' | translate }}</mat-option>
@@ -22,19 +19,16 @@
     </mat-select>
     <mat-hint align="end">{{ 'QUESTIONNAIRE.TEXT1' | translate }}</mat-hint>
   </mat-form-field>
-
+  <br>
   <mat-form-field *ngIf ="groups">
       <mat-select [(value)]="groupselected" placeholder="{{ 'GROUPS.CHOOSE' | translate }}">
-          <mat-option value= "none">
-              {{ 'GROUPS.NOASSIGN' | translate }}
-            </mat-option>
         <mat-option *ngFor="let group of groups" [value]="group.id">
           {{group.name}}
         </mat-option>
       </mat-select>
-
+      <mat-hint align="end">{{ 'QUESTIONNAIRE.TEXT1' | translate }}</mat-hint>
     </mat-form-field>
-
+    <br>
   <form>
     <p style="font-size:100%;" style="color:gray;">{{ 'QUESTIONNAIRE.TEXT12' | translate }}</p>
     <input type="date" name="bday" [(ngModel)]="date">

@@ -4,6 +4,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Point } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -20,6 +21,7 @@ export class CreatePointComponent implements OnInit {
   public image: string;
   public newPoint: Point;
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -45,7 +47,7 @@ export class CreatePointComponent implements OnInit {
 
     if(this.name == "" || !this.value || this.image == "")
     {
-      this.snackbar.open("S'han d'omplir tots els camps","ERROR",{duration: 2000 });
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
     }
     else
     {
@@ -53,6 +55,7 @@ export class CreatePointComponent implements OnInit {
     this.pointService.savePoint(this.name, this.value, this.image).subscribe(
       ((newPoint: Point) => {
         this.newPoint = newPoint;
+        this.alertService.show(this.translateService.instant('POINTS.CREATED'));
         this.loadingService.hide();
       }),
       ((error: Response) => {
@@ -60,7 +63,6 @@ export class CreatePointComponent implements OnInit {
         this.alertService.show(error.toString());
       }));
 
-    this.snackbar.open("Nou Punt guardat","",{duration: 2000});
     this.cancel();
 
     }

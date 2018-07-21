@@ -13,8 +13,12 @@
   </mat-form-field>
 
   <mat-form-field>
-    <textarea [(ngModel)]="urlImage" matInput placeholder="{{ 'QUESTIONNAIRE.URL' | translate }}"></textarea>
+    <input matInput [(ngModel)]="urlImage"  placeholder="{{ 'QUESTIONNAIRE.URL' | translate }}">
   </mat-form-field>
+  <mat-card class="card-image" *ngIf="urlImage">
+        <div mat-card-avatar class="example-image"></div>
+        <img mat-card-lg-image src="{{urlImage}}">
+    </mat-card>
 
   <button mat-raised-button (click)="createQuestionnaire()">{{ 'QUESTIONNAIRE.NEXT' | translate }}</button>
 

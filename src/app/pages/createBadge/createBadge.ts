@@ -4,6 +4,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Badge } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService,BadgeService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -20,6 +21,7 @@ export class CreateBadgeComponent implements OnInit {
   public image: string;
   public newBadge: Badge;
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -45,7 +47,7 @@ export class CreateBadgeComponent implements OnInit {
 
     if(this.name == "" || !this.value || this.image == "")
     {
-      this.snackbar.open("S'han d'omplir tots els camps","ERROR",{duration: 2000 });
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
     }
     else
     {
@@ -60,7 +62,7 @@ export class CreateBadgeComponent implements OnInit {
         this.alertService.show(error.toString());
       }));
 
-    this.snackbar.open("Nova insígnia guardada","",{duration: 2000});
+    this.alertService.show(this.translateService.instant('BADGES.CREATED'));
     this.cancel();
 
     }

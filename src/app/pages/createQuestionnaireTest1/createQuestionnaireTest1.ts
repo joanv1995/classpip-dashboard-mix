@@ -5,7 +5,7 @@ import { Login, Group, Role, Questionnaire, Question } from '../../shared/models
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
 import { CreateQuestionnaireTest2Component } from '../../pages/createQuestionnaireTest2/createQuestionnaireTest2';
-
+import { TranslateService} from 'ng2-translate'
 
 @Component({
   /*selector: 'app-createQuestionnaireTest1',*/
@@ -31,6 +31,7 @@ export class CreateQuestionnaireTest1Component implements OnInit {
   public correctAnswer: string;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -78,16 +79,37 @@ export class CreateQuestionnaireTest1Component implements OnInit {
 
   createQuestionnaire(): void {
 
-    this.num += 1;
+    this.questionData = [];
+
+  if(!this.question || !this.correctAnswer || !this.answer1 || !this.answer2 || !this.answer3 || !this.answer4)
+  {
+    this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
+
+  }
+  else{
+
+
     this.questionData.push(this.question);
     this.questionData.push(this.answer1);
     this.questionData.push(this.answer2);
     this.questionData.push(this.answer3);
     this.questionData.push(this.answer4);
+
+    if(this.questionData.indexOf(this.correctAnswer) == -1)
+    {
+      this.alertService.show(this.translateService.instant('QUESTIONNAIRE.CORRECTANSWERERROR'));
+
+
+    }
+    else{
+
+    this.num += 1;
     this.questionData.push(this.correctAnswer);
     this.questionData.push('test');
 
     if ( (this.num) < this.numberQuestions) {
+
+
 
       this.questionnaireService.saveQuestionAnswersCorrectAnswer(this.numberData, this.questionData).subscribe(
         ((value: Array<Question>) => this.myQuestions = value),
@@ -107,7 +129,9 @@ export class CreateQuestionnaireTest1Component implements OnInit {
     } else {
 
       this.questionnaireService.saveQuestionAnswersCorrectAnswer(this.numberData, this.questionData).subscribe(
-        ((value: Array<Question>) => this.myQuestions = value),
+        ((value: Array<Question>) => {this.myQuestions = value;
+          this.alertService.show(this.translateService.instant('QUESTIONNAIRE.CREATED'));
+        }),
       ((error: Question) => {
           this.loadingService.hide();
           this.alertService.show(error.toString());
@@ -121,5 +145,7 @@ export class CreateQuestionnaireTest1Component implements OnInit {
       });
         this.cancel();
     }
+  }
+}
   }
 }

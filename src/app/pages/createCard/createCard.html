@@ -1,5 +1,5 @@
 <div class="createCard-content">
-  <h3 matLine>Nou cromo per la col·lecció</h3>
+
   <br>
     <mat-form-field hintLabel="{{'COMMON.MAX40CARACT' | translate}}">
       <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="{{'CARDS.NAME' | translate}}">
@@ -42,7 +42,7 @@
 
     <br>
 
-    <button mat-raised-button (click)="createNewCard()">Guardar nova Carta</button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
+    <button mat-raised-button (click)="createNewCard()">{{'CARDS.SAVE' | translate}}</button>
+    <button mat-raised-button (click)="cancel()">{{'COMMON.CANCEL' | translate}}</button>
 
   </div>

@@ -3,9 +3,9 @@ import {FormControl, FormsModule} from '@angular/forms';
 import{ TranslateService} from 'ng2-translate';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { Login, Group, Role, Questionnaire, Point, Card, CollectionCard, Badge } from '../../shared/models/index';
+import { Login, Group, Role, Questionnaire, Point, Card, CollectionCard, Badge, Profile } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
-import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService, CollectionService, BadgeService, SchoolService } from '../../shared/services/index';
+import { LoadingService, UtilsService, UserService, PointService, GroupService, AlertService, QuestionnaireService, CollectionService, BadgeService, SchoolService } from '../../shared/services/index';
 
 
 
@@ -31,6 +31,7 @@ export class CreateCollectionComponent implements OnInit {
   public returnedCollection: CollectionCard;
 
   constructor(
+    public userService: UserService,
     public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
@@ -76,7 +77,11 @@ export class CreateCollectionComponent implements OnInit {
     this.newCollection.name = this.name;
     this.newCollection.num = String(this.num);
     this.newCollection.image = this.image;
-    this.newCollection.createdBy = String(this.utilsService.currentUser.userId);
+    this.userService.getMyProfile().subscribe(
+      ((pr: Profile)=>{
+
+        this.newCollection.createdBy = pr.username;
+
     if(this.badgeSelected!= "none")
     {
       this.newCollection.badgeId = this.badgeSelected;
@@ -90,8 +95,7 @@ export class CreateCollectionComponent implements OnInit {
       ((returnedCollection: CollectionCard) => {
         this.returnedCollection = returnedCollection;
         this.loadingService.hide();
-       // this.snackbar.open("Nova col·lecció creada !","",{duration:2000});
-        this.alertService.show(this.translateService.instant('COLLECTIONS.TITLE'));
+        this.alertService.show(this.translateService.instant('COLLECTIONS.CREATED'));
 
         this.dialogRef.afterClosed().subscribe(result => {
           this.result = result;
@@ -105,22 +109,17 @@ export class CreateCollectionComponent implements OnInit {
         this.alertService.show(error.toString());
       }));
 
-
-
-
+      })
+    ),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      });
 
     }
     else{
-      this.snackbar.open("S'han d'omplir tots els camps", "Advertencia", {duration:2000})
-
-
-
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
     }
-
-
-
-
-
   }
   cancel(): void {
     this.dialogRef.close();

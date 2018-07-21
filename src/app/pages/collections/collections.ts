@@ -2,15 +2,16 @@ import { Component, OnInit, Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatSnackBar} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatListModule} from '@angular/material/list';
-import { Login, Group, Role, Questionnaire, Point, Badge, CollectionCard, Card, Student } from '../../shared/models/index';
+import { Login, Group, Role, Questionnaire, Point, Badge, CollectionCard, Card, Student, Profile } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LoadingService, UtilsService, GroupService, AlertService, CollectionService, SchoolService } from '../../shared/services/index';
+import { LoadingService, UtilsService, UserService, GroupService, AlertService, CollectionService, SchoolService } from '../../shared/services/index';
 import { CreateCollectionComponent } from '../createCollection/createCollection';
 import { DeleteCollectionComponent } from '../deleteCollection/deleteCollection';
 
 import { FormControl } from '@angular/forms';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -42,11 +43,12 @@ export class CollectionsComponent implements OnInit {
   public resultDeleteCollection: number;
 
   constructor(
+    public translateService: TranslateService,
     public route: ActivatedRoute,
     public route2: ActivatedRoute,
     public router: Router,
     public router2: Router,
-
+    public userService: UserService,
     public alertService: AlertService,
     public schoolService: SchoolService,
     public utilsService: UtilsService,
@@ -107,8 +109,26 @@ export class CollectionsComponent implements OnInit {
 
       if(this.isTeacher)
       {
-      this.router.navigate([this.returnUrl, collectionCard.id]);
-      }
+
+        this.userService.getMyProfile().subscribe(
+          ((pr: Profile)=>{
+            if(pr.username == collectionCard.createdBy){
+            this.router.navigate([this.returnUrl, collectionCard.id]);
+            }
+            else{
+
+              this.alertService.show(this.translateService.instant('COLLECTIONS.NOTEDITABLE'))
+
+            }
+
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
+          }));
+
+
+          }
       else
       {
 
@@ -136,6 +156,10 @@ export class CollectionsComponent implements OnInit {
   assignCollectionToGroup(){
 
     //
+    if(!this.collectionSelected || !this.groupAssign){
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
+     }
+    else{
     this.collectionService.getCollectionDetails(this.collectionSelected).subscribe(
       ((cardss: Array<Card>)=> {
 
@@ -145,21 +169,21 @@ export class CollectionsComponent implements OnInit {
 
         if(cardss.length < +collection.num)
         {
-          this.snackbar.open("No se puede assignar una colección que no contiene la cantidad de cartas que especifica dicha colección.", "Error",{duration:2000});
-
+          this.alertService.show(this.translateService.instant('COLLECTIONS.FAILASSIGN'));
         }
+
         else{
 
           this.collectionService.assignCollection(this.collectionSelected, this.groupAssign).subscribe(
             ((response: Response)=> {
               this.groupService.getMyGroupStudents(this.groupAssign).subscribe(students => {
                 this.students = students;
+                this.alertService.show(this.translateService.instant('COLLECTIONS.CORASSIGN'));
                 this.students.forEach( (element) => {
                   this.collectionService.assignCollectionToStudent(element.id, this.collectionSelected).subscribe(response => {
 
                   })
                 });
-                this.snackbar.open('Collection assigned to group successfuly', '',{duration:2000});
 
                 this.groupAssign = "";
                 this.collectionSelected = "";
@@ -188,13 +212,18 @@ export class CollectionsComponent implements OnInit {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+    }
 
 
 
   }
  public  deleteCollection(){
-    if(this.collId.length > 0)
+    if(!this.collId)
     {
+      this.alertService.show(this.translateService.instant('COLLECTIONS.NOTSELECTED'))
+    }
+    else{
+
       let dialogRef = this.dialog.open(DeleteCollectionComponent, {
         height: '400px',
         width: '600px',
@@ -203,19 +232,10 @@ export class CollectionsComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         this.resultDeleteCollection = result;
+        this.collId = null;
         this.ngOnInit();
       });
     }
-    else{
-
-      this.snackbar.open("Introduir identificador d'Insígnia", "Error",{duration:2000});
-
-    }
-
-
-
-
-
   }
   showNoAssignedGroups(){
     if(this.collectionSelected)

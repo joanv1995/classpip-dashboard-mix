@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Login, Group, Role, Questionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, PointService } from '../../shared/services/index';
+import { TranslateService } from 'ng2-translate';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class DeletePointComponent implements OnInit {
   result: string;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -42,11 +44,22 @@ export class DeletePointComponent implements OnInit {
   deletePoint(): void {
     if (this.utilsService.role === Role.TEACHER) {
 
-      this.loadingService.show();
+          this.loadingService.show();
       this.pointService.deletePoint(this.data.name).subscribe(
-        result => this.result
-      );
-      this.cancel();
+        ((value: any)  =>{
+          switch(value.count)
+          {
+            case 1:
+              this.alertService.show(this.translateService.instant('POINTS.DELETED'))
+              break;
+            case 0:
+              this.alertService.show(this.translateService.instant('POINTS.NOTDELETED'))
+              break;
+            default:
+            break;
+          }
+        }));
+        this.cancel();
 
     }
   }

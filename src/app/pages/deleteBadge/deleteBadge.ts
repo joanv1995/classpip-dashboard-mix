@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Login, Group, Role, Questionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, BadgeService } from '../../shared/services/index';
+import { TranslateService } from 'ng2-translate';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class DeleteBadgeComponent implements OnInit {
   result: string;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -41,12 +43,22 @@ export class DeleteBadgeComponent implements OnInit {
 
   deleteBadge(): void {
     if (this.utilsService.role === Role.TEACHER) {
-
       this.loadingService.show();
       this.badgeService.deleteBadge(this.data.name).subscribe(
-        result => this.result
-      );
-      this.cancel();
+        ((value: any)  =>{
+          switch(value.count)
+          {
+            case 1:
+              this.alertService.show(this.translateService.instant('BADGES.DELETED'))
+              break;
+            case 0:
+              this.alertService.show(this.translateService.instant('BADGES.NOTDELETED'))
+              break;
+            default:
+            break;
+          }
+        }));
+        this.cancel();
 
     }
   }

@@ -1,12 +1,18 @@
 <div class="collection-content">
 
-<mat-card *ngIf ="badgeWon.name">
-    <mat-card-subtitle>{{'COLLECTIONS.FINISHCOLLECTION' | translate}}</mat-card-subtitle>
-    <mat-card-content>
-      <h3>{{'BADGES.SINGULAR' | translate}} {{badgeWon.name}}</h3>
-    </mat-card-content>
-    <img mat-card-sm-image src="{{badgeWon.image}}">
+
+  <mat-card  *ngIf ="badgeWon.name">
+      <h4 mat-header>{{'COLLECTIONS.FINISHCOLLECTION' | translate}}</h4>
+  <mat-nav-list >
+      <mat-list-item>
+          <img matListAvatar src={{badgeWon.image}}>
+          <h3 class="margin-badge">{{'BADGES.SINGULAR' | translate}} {{badgeWon.name}}</h3>
+
+        </mat-list-item>
+  </mat-nav-list>
 </mat-card>
+
+
 <br>
 <mat-card class="back-completed" *ngIf="myCards == finalCards.length && finalCards.length != 0">
   <p mat line >Col·lecció completada

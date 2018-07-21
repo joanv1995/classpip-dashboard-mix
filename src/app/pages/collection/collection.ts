@@ -10,6 +10,7 @@ import { LoadingService, UtilsService, GroupService, AlertService, CollectionSer
 import { CreateCardComponent } from '../createCard/createCard';
 import { DeleteCardComponent } from '../deleteCard/deleteCard';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -33,15 +34,17 @@ export class CollectionComponent implements OnInit {
   public collectionGroups: Array<Group>;
   public collectionStudents: Array<Student>;
   public cardId: string;
-
   public sub: any;
   public collectionCardId: string;
+  public myCollection: CollectionCard;
   public cards = [];
-  public options = ["Assignar una carta a escollir","Assignar una carta aleatòria","Assignar tres cartes aleatòries","Assignar cinc cartes aleatòries"];
+
+  public options = [];
 
 
 
   constructor(
+    public translateService: TranslateService,
     public route: ActivatedRoute,
     public router: Router,
     public alertService: AlertService,
@@ -66,10 +69,31 @@ export class CollectionComponent implements OnInit {
 
    this.sub = this.route.params.subscribe(params => {
     this.collectionCardId = params['id'];
+
+
   });
+
+
+
+    this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE1'));
+    this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE2'));
+    this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE3'));
+    this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE4'));
+
 
     if (this.utilsService.role === Role.TEACHER) {
       this.isTeacher = true;
+      this.collectionService.getCollection(+this.collectionCardId).subscribe(
+        ((collection: CollectionCard) => {
+          this.myCollection = collection;
+          this.loadingService.hide();
+
+
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
       this.collectionService.getCollectionDetails(this.collectionCardId).subscribe(
         ((collectionCards: Array<Card>) => {
           this.collectionCards = collectionCards;
@@ -118,7 +142,11 @@ export class CollectionComponent implements OnInit {
 
   }
  public deleteCard() {
-
+    if(!this.cardId)
+    {
+      this.alertService.show(this.translateService.instant('CARDS.NOTSELECTED'));
+    }
+    else{
 
     let dialogRef = this.dialog.open(DeleteCardComponent, {
       height: '600px',
@@ -128,8 +156,10 @@ export class CollectionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.result = result;
+      this.cardId = null;
       this.ngOnInit();
     });
+  }
 
   }
   public showStudents(){
@@ -165,14 +195,14 @@ export class CollectionComponent implements OnInit {
     if(this.optionType)
     {
     switch (this.optionType){
-      case "Assignar una carta a escollir":
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE1'):
         if(this.studentSelected && this.cardSelected && this.groupSelected)
         {
           this.collectionService.assignCardToStudent(this.studentSelected,this.cardSelected).subscribe(
             ((collectionCards: Array<Card>) => {
               this.loadingService.hide();
 
-              this.snackbar.open("Carta assignada correctament","",{duration:2000})
+              this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
 
 
             }),
@@ -182,13 +212,12 @@ export class CollectionComponent implements OnInit {
             }));
         }
         else{
-          this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
-
+              this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'))
 
         }
 
         break;
-        case "Assignar una carta aleatòria":
+        case this.translateService.instant('CARDS.ASSIGNMENTTYPE2'):
 
         if(this.studentSelected  && this.groupSelected)
         {
@@ -212,17 +241,17 @@ export class CollectionComponent implements OnInit {
 
 
 
-          this.snackbar.open("1 Carta assignades correctament", "",{duration:2000});
+              this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
 
 
         }
         else{
-          this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+          this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'))
 
 
         }
         break;
-      case "Assignar tres cartes aleatòries":
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE3'):
 
           if(this.studentSelected  && this.groupSelected)
           {
@@ -248,18 +277,18 @@ export class CollectionComponent implements OnInit {
 
 
             }
-            this.snackbar.open("3 Cartes assignades correctament", "",{duration:2000});
+            this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
 
 
           }
           else{
-            this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+            this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'))
 
 
           }
           break;
 
-      case "Assignar cinc cartes aleatòries":
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE4'):
 
 
       if(this.studentSelected  && this.groupSelected)
@@ -284,14 +313,14 @@ export class CollectionComponent implements OnInit {
 
 
         }
-        this.snackbar.open("5 Cartes assignades correctament", "",{duration:2000});
+        this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
 
 
       }
 
 
       else{
-        this.snackbar.open("S'han d'omplir tots els camps", "Error",{duration:2000});
+        this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'))
 
 
       }
@@ -303,7 +332,7 @@ export class CollectionComponent implements OnInit {
     this.optionType = "";
   }
   else{
-    this.snackbar.open("S'ha d'escollir un tipus d'assignació", "Error",{duration:2000});
+    this.alertService.show(this.translateService.instant('CARDS.CHOOSEASSIGN'));
 
 
     }

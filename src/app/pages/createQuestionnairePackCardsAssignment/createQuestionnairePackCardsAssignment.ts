@@ -8,6 +8,7 @@ import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService,CollectionService, GroupService, AlertService, QuestionnaireService, BadgeService, SchoolService } from '../../shared/services/index';
 import { CreateQuestionnaireTest1Component } from '../../pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTextArea1Component } from '../../pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
+import { TranslateService } from 'ng2-translate';
 
 @Component({
   /*selector: 'app-createQuestionnaireTest1',*/
@@ -47,6 +48,7 @@ export class CreateQuestionnairePackCardsAssignmentComponent implements OnInit {
   public ind: number;
   public selectedType: string;
   constructor(
+    public translateService: TranslateService,
     public groupService: GroupService,
     public snackbar: MatSnackBar,
     public collectionService: CollectionService,
@@ -204,13 +206,20 @@ export class CreateQuestionnairePackCardsAssignmentComponent implements OnInit {
     if(this.assigned == 1)
     {
 
+      if(!this.collectionSelected){
+
+        this.alertService.show(this.translateService.instant('QUESTIONNAIRE.NOASSIGNEDCOLLECTION'));
 
 
+      }
+      else
+      {
 
       this.packCards.push(+this.collectionSelected)
-      this.packCards.push(+this.ins1);
-      this.packCards.push(+this.ins2);
-      this.packCards.push(+this.ins3);
+      this.ins1 == null?this.packCards.push(0):this.packCards.push(this.ins1);
+      this.ins2 == null?this.packCards.push(0):this.packCards.push(this.ins2);
+      this.ins3 == null?this.packCards.push(0):this.packCards.push(this.ins3);
+      }
 
 
     }
@@ -219,14 +228,6 @@ export class CreateQuestionnairePackCardsAssignmentComponent implements OnInit {
       this.packCards = null;
     }
     this.stringData.push(this.packCards);
-
-
-
   }
-
-
-
-
-
 
 }

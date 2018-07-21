@@ -13,6 +13,7 @@ import { CreatePointComponent } from '../../pages/createPoint/createPoint';
 import { DeletePointComponent } from '../../pages/deletePoint/deletePoint';
 import { CreateBadgeComponent } from '../../pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from '../../pages/deleteBadge/deleteBadge';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -24,7 +25,7 @@ import { DeleteBadgeComponent } from '../../pages/deleteBadge/deleteBadge';
 export class PointsBadgesComponent implements OnInit {
   myControl = new FormControl();
   public returnUrl: string;
-
+  public questionnairePoint: string = "100001";
   public badges: Array<Badge>;
   public badgeId: string;
   public resultDeleteBadge: number;
@@ -65,7 +66,7 @@ export class PointsBadgesComponent implements OnInit {
   public resultCreate: string;
 
   constructor(
-
+    public translateService: TranslateService,
     public route: ActivatedRoute,
     public router: Router,
     public groupService: GroupService,
@@ -310,7 +311,7 @@ sendBadgeRelation(){
   if(!this.groupSelected2 || !this.studentSelected2 || !this.badgeSelected)
   {
 
-    this.snackbar.open("S'han d'omplir tots els camps", "Insígnia no assignada",{duration:2000})
+    this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
 
   }
  else {
@@ -319,7 +320,7 @@ sendBadgeRelation(){
       this.responseBadgeRelation = responseBadgeRelation;
       this.loadingService.hide();
 
-      this.snackbar.open("Insígnia guardada !","",{duration:2000});
+      this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
 
 
     }),
@@ -327,22 +328,14 @@ sendBadgeRelation(){
       this.loadingService.hide();
       this.alertService.show(error.toString());
     }));
-
-
-
   }
-
-
-
-
-
 }
   sendPointRelation()
   {
     if(!this.groupSelected || !this.studentSelected || !this.pointSelected || !this.valueSelected)
     {
 
-      this.snackbar.open("S'han d'omplir tots els camps", "Punts no enviants",{duration:2000})
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
 
     }
    else {
@@ -351,7 +344,7 @@ sendBadgeRelation(){
         this.responsePointRelation = responsePointRelation;
         this.loadingService.hide();
 
-        this.snackbar.open("Punts guardats !","",{duration:2000});
+        this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
 
 
       }),
@@ -359,14 +352,7 @@ sendBadgeRelation(){
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
-
-
-
-    }
-
-
-
-
+     }
   }
   public createPoint() {
     const dialogRef = this.dialog.open(CreatePointComponent, {
@@ -383,8 +369,20 @@ sendBadgeRelation(){
   }
   public deletePoint() {
 
-    if(this.pointId.length > 0)
+
+    if(!this.pointId)
     {
+
+      this.alertService.show(this.translateService.instant('POINTS.NOTSELECTED'));
+
+    }
+    else if (this.pointId == this.questionnairePoint)
+    {
+      this.alertService.show(this.translateService.instant('POINTS.QUESTIONNAIRE'));
+
+
+    }
+    else{
       let dialogRef = this.dialog.open(DeletePointComponent, {
         height: '400px',
         width: '600px',
@@ -393,14 +391,12 @@ sendBadgeRelation(){
 
       dialogRef.afterClosed().subscribe(result => {
         this.resultDeletePoint = result;
+        this.pointId = null
         this.ngOnInit();
       });
     }
-    else{
 
-      this.snackbar.open("Introduir identificador de Punt", "Error",{duration:2000});
 
-    }
   }
 
   public createBadge() {
@@ -415,8 +411,15 @@ sendBadgeRelation(){
   }
   public deleteBadge() {
 
-    if(this.badgeId.length > 0)
+    if(!this.badgeId)
     {
+
+      this.alertService.show(this.translateService.instant('BADGES.NOTSELECTED'));
+
+
+    }
+
+    else{
       let dialogRef = this.dialog.open(DeleteBadgeComponent, {
         height: '400px',
         width: '600px',
@@ -425,18 +428,14 @@ sendBadgeRelation(){
 
       dialogRef.afterClosed().subscribe(result => {
         this.resultDeleteBadge = result;
+        this.badgeId = null
+
         this.ngOnInit();
       });
     }
-    else{
 
-      this.snackbar.open("Introduir identificador d'Insígnia", "Error",{duration:2000});
 
-    }
   }
-  /*cancel(): void {
-    this.dialogRef.close();
 
-  }*/
 
 }

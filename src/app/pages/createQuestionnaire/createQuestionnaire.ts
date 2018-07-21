@@ -7,6 +7,7 @@ import { LoadingService, UtilsService, GroupService, AlertService, Questionnaire
 import { CreateQuestionnaireTest1Component } from '../../pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTextArea1Component } from '../../pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
 import { CreateQuestionnairePointsAssignmentComponent } from '../createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
+import { TranslateService } from 'ng2-translate';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class CreateQuestionnaireComponent implements OnInit {
   public num = 0;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -51,19 +53,9 @@ export class CreateQuestionnaireComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.utilsService.role === Role.TEACHER) {
 
       this.loadingService.show();
-     /* this.questionnaireService.getQuestionnaires().subscribe(
-        ((questionnaires: Array<Questionnaire>) => {
-          this.questionnaires = questionnaires;
-          this.loadingService.hide();
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));*/
-        this.groupService.getMyGroups().subscribe(
+           this.groupService.getMyGroups().subscribe(
           ((groups: Array<Group>) => {
             this.groups = groups;
             this.loadingService.hide();
@@ -72,34 +64,24 @@ export class CreateQuestionnaireComponent implements OnInit {
             this.loadingService.hide();
             this.alertService.show(error.toString());
           }));
-    }
+
   }
 
   cancel(): void {
     this.dialogRef.close();
   }
-
   createQuestionnaire(): void {
 
-
-
+    if(this.name =="" || !this.date|| this.time == null || this.time <= 0  || this.number == null || this.number <= 0 || this.groupselected == ""){
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
+    }
+    else{
     this.stringData.push(this.name);
     this.stringData.push(this.date);
     this.numberData.push(this.time);
     this.numberData.push(this.number);
+    this.stringData.push(this.groupselected);
 
-
-    if(this.groupselected != "none"){
-
-      this.stringData.push(this.groupselected);
-
-    }
-    else{
-
-      this.groupselected = null;
-      this.stringData.push(this.groupselected);
-
-    }
     let dialogRef1 = this.dialog.open(CreateQuestionnairePointsAssignmentComponent, {
     height: '600px',
     width: '700px',
@@ -111,6 +93,7 @@ export class CreateQuestionnaireComponent implements OnInit {
       this.ngOnInit();
     });
     this.cancel();
+  }
 
 
   }

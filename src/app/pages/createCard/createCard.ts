@@ -6,6 +6,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Point, Card } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService, CollectionService } from '../../shared/services/index';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -31,6 +32,7 @@ export class CreateCardComponent implements OnInit {
   public returnedCard: Card;
 
   constructor(
+    public translateService: TranslateService,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
@@ -48,16 +50,16 @@ export class CreateCardComponent implements OnInit {
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
     this.collectionId = data.name;
 
-    this.ranks.push("diamante");
-    this.ranks.push("oro");
-    this.ranks.push("plata");
-    this.ranks.push("bronce");
+    this.ranks.push(this.translateService.instant('CARDS.RANK1'));
+    this.ranks.push(this.translateService.instant('CARDS.RANK2'));
+    this.ranks.push(this.translateService.instant('CARDS.RANK3'));
+    this.ranks.push(this.translateService.instant('CARDS.RANK4'));
 
 
-    this.ratios.push("raro");
-    this.ratios.push("bajo");
-    this.ratios.push("medio");
-    this.ratios.push("alto");
+    this.ratios.push(this.translateService.instant('CARDS.RATIO1'));
+    this.ratios.push(this.translateService.instant('CARDS.RATIO2'));
+    this.ratios.push(this.translateService.instant('CARDS.RATIO3'));
+    this.ratios.push(this.translateService.instant('CARDS.RATIO4'));
 
 
 
@@ -88,7 +90,7 @@ export class CreateCardComponent implements OnInit {
       ((returnedCard: Card) => {
         this.returnedCard = returnedCard;
         this.loadingService.hide();
-        this.snackbar.open("Nova carta creada i introduïda a la col·lecció !","",{duration:2000});
+        this.alertService.show(this.translateService.instant('CARDS.CREATED'));
 
       }),
       ((error: Response) => {
@@ -103,7 +105,7 @@ export class CreateCardComponent implements OnInit {
 
     }
     else{
-      this.snackbar.open("S'han d'omplir tots els camps", "Advertencia", {duration:2000})
+      this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
 
 
 

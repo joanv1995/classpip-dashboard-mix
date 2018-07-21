@@ -9,7 +9,7 @@
 
           </mat-select>
       </mat-form-field>
-      <mat-form-field class = "formMargin" *ngIf = "optionType =='Assignar una carta a escollir'" >
+      <mat-form-field class = "formMargin" *ngIf = "optionType == options[0]" >
           <mat-select [(value)]="cardSelected" placeholder="{{'CARDS.CHOOSE' | translate}}"  [formControl]= "myControl">
               <mat-option *ngFor="let card of collectionCards" [value]="card.id">
                   {{card.name}} ({{card.rank}})
@@ -45,7 +45,7 @@
 
 
     <mat-nav-list *ngIf="collectionCards && isTeacher" class="cardList">
-        <h3 mat-subheader>{{'CARDS.OFCOLLECTION' | translate}}</h3>
+        <h3 mat-subheader>{{'CARDS.OFCOLLECTION' | translate}} ({{collectionCards.length}}/{{myCollection.num}})</h3>
         <mat-list-item *ngFor="let card  of collectionCards" >
 
 

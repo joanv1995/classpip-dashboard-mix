@@ -87,10 +87,7 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
 };
   ngOnInit(): void {
 
-
-
-    if (this.utilsService.role === Role.TEACHER) {
-
+     this.loadingService.show();
       this.questionnaireService.getQuestionnaires().subscribe(
         ((questionnaires: Array<Questionnaire>) => {
           this.questionnaires = questionnaires;
@@ -100,36 +97,34 @@ export class CreateQuestionnairePointsAssignmentComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
-    }
+
   }
   createQuestionnaire(): void{
 
     if(this.assigned == 1)
     {
 
-      this.points.push(this.a);
-      this.points.push(this.b);
-      this.points.push(this.c);
-      this.points.push(this.d);
-      this.points.push(this.e);
-      this.points.push(this.f);
-      this.points.push(this.g);
+      this.a == null?this.points.push(0):this.points.push(this.a);
+      this.b == null?this.points.push(0):this.points.push(this.b);
+      this.c == null?this.points.push(0):this.points.push(this.c);
+      this.d == null?this.points.push(0):this.points.push(this.d);
+      this.e == null?this.points.push(0):this.points.push(this.e);
+      this.f == null?this.points.push(0):this.points.push(this.f);
+      this.g == null?this.points.push(0):this.points.push(this.g);
+
 
     this.stringData.push(this.points);
     }
     else if(this.assigned == 0)
     {
-    this.points.push(0);
-    this.points.push(0);
-    this.points.push(0);
-    this.points.push(0);
-    this.points.push(0);
-    this.points.push(0);
-    this.points.push(0);
-
-
-
-    this.stringData.push(this.points);
+      this.points.push(0);
+      this.points.push(0);
+      this.points.push(0);
+      this.points.push(0);
+      this.points.push(0);
+      this.points.push(0);
+      this.points.push(0);
+       this.stringData.push(this.points);
     }
 
     let dialogRef1 = this.dialog.open(CreateQuestionnaireBadgesAssignmentComponent, {

@@ -89,6 +89,7 @@ export class CreateQuestionnaireBadgesAssignmentComponent implements OnInit {
   }
 };
   ngOnInit(): void {
+    this.loadingService.show();
     if (this.utilsService.role === Role.TEACHER) {
       this.schoolService.getMySchoolBadges().subscribe(
         ((badges: Array<Badge>) => {
@@ -138,27 +139,30 @@ export class CreateQuestionnaireBadgesAssignmentComponent implements OnInit {
       for(var i = 0; i < this.badges.length; i++)
       {
         if(this.ins1 == this.badges[i].name){
-
           this.ins1t = this.badges[i].id;
-
+        }
+        else if(this.ins1 == null){
+          this.ins1t = "0";
         }
         if(this.ins2 == this.badges[i].name){
           this.ins2t = this.badges[i].id;
-
-
+        }
+        else if(this.ins2 == null){
+          this.ins2t = "0";
         }
         if(this.ins3 == this.badges[i].name){
           this.ins3t = this.badges[i].id;
         }
-
-
+        else if(this.ins3 == null){
+          this.ins3t = "0";
+        }
       }
 
 
 
-      this.badgesArray.push(this.ins1t);
-      this.badgesArray.push(this.ins2t);
-      this.badgesArray.push(this.ins3t);
+      this.badgesArray.push(String(this.ins1t));
+      this.badgesArray.push(String(this.ins2t));
+      this.badgesArray.push(String(this.ins3t));
 
 
     }

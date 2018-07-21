@@ -120,7 +120,7 @@ export class QuestionnaireService {
    * of the groups we are querying
    * @return {Matter} matter object with all the information
    */
-  public deleteQuestionnaire(idQuestionnaire: number): Observable<Response> {
+  public deleteQuestionnaire(idQuestionnaire: number): Observable<any> {
 
     const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
@@ -129,7 +129,9 @@ export class QuestionnaireService {
     const url: string = AppConfig.QUESTIONNAIRE_URL + '/' + idQuestionnaire;
 
     return this.http.delete(url, options)
-        .map(this.extractData)
+        .map(response => {
+
+          return response.json()})
         .catch(this.handleError);
   }
 
@@ -171,7 +173,7 @@ export class QuestionnaireService {
       return this.http.patch(url, postParams, options)
         .map(response => {
           this.utilsService.currentQuestionnaire = Questionnaire.toObject(response.json());
-          return Questionnaire;
+          return this.utilsService.currentQuestionnaire;
         })
         .catch((error: Response) => this.utilsService.handleAPIError(error));
 
@@ -199,14 +201,6 @@ export class QuestionnaireService {
         teacherId: this.utilsService.currentUser.userId,
       }
     }
-
-
-
-
-
-
-
-
     return this.http.post(url, postParams, options)
       .map(response => {
         this.utilsService.currentQuestionnaire = Questionnaire.toObject(response.json());

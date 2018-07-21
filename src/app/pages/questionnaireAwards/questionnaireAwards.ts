@@ -17,7 +17,7 @@ export class QuestionnaireAwardsComponent implements OnInit {
 
   public value: number;
   public bb: Array<Badge> = new Array<Badge>();
-  public quest: Questionnaire;
+  public quest: Questionnaire = new Questionnaire();
   public badges = [];
   public collection: CollectionCard = new CollectionCard();
 
@@ -42,6 +42,7 @@ export class QuestionnaireAwardsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    if(this.quest.badges){
     for(let i = 0; i< this.quest.badges.length; i++)
     {
       this.badgeService.getBadge(+this.quest.badges[i]).subscribe(
@@ -70,6 +71,7 @@ export class QuestionnaireAwardsComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
+      }
 
 
 

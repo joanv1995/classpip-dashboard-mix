@@ -143,12 +143,12 @@ export class CollectionService {
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL + '/' + collectionId;
+    let url: string = AppConfig.COLLECTION_URL + '/' + collectionId;
 
 
     return this.http.delete(url,options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch ((error : Response) => this.utilsService.handleAPIError(error));
   }

@@ -10,6 +10,7 @@ import { LoadingService, UtilsService,BadgeService, GroupService, AlertService, 
 import { CreateCardComponent } from '../createCard/createCard';
 import { DeleteCardComponent } from '../deleteCard/deleteCard';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -48,6 +49,7 @@ export class CollectionStudentComponent implements OnInit {
 
 
   constructor(
+    public translateService: TranslateService,
     public route: ActivatedRoute,
     public router: Router,
     public badgeService: BadgeService,
@@ -122,8 +124,8 @@ export class CollectionStudentComponent implements OnInit {
             this.cards = allCards.sort((n1,n2)=> +n1.id - +n2.id )
             let unknownCard = new Card();
 
-            unknownCard.name="Desconocida";
-            unknownCard.rank="Desconocido";
+            unknownCard.name=this.translateService.instant('CARDS.UNKNOWN');
+            unknownCard.rank= this.translateService.instant('CARDS.UNKNOWN');
             unknownCard.image="https://image.flaticon.com/icons/png/512/37/37232.png";
             this.collectionService.getAssignedCards().subscribe((assignedCards: Array<Card>)=> {
               this.assignedCards = assignedCards;

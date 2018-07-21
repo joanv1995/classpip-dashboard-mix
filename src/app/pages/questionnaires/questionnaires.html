@@ -39,7 +39,7 @@
   <mat-form-field>
     <input matInput [(ngModel)]="name" placeholder="{{ 'QUESTIONNAIRES.ID' | translate }}">
   </mat-form-field>
-  <button mat-raised-button (click)="openDialog()">{{ 'QUESTIONNAIRES.DELETE' | translate }}</button>
+  <button mat-raised-button (click)="deleteQuestionnaire()">{{ 'QUESTIONNAIRES.DELETE' | translate }}</button>
 </ol>
 
 <ol *ngIf="questionnaires && isTeacher">
