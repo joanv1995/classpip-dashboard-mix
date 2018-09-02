@@ -72,6 +72,7 @@ export class CollectionsComponent implements OnInit {
 
     if (this.utilsService.role === Role.TEACHER) {
       this.isTeacher = true;
+      //Mostrar colecciones que hay en la  (profesor)
       this.collectionService.getCollections().subscribe(
         ((collections: Array<CollectionCard>) => {
           this.collections = collections;
@@ -89,6 +90,7 @@ export class CollectionsComponent implements OnInit {
 
    else if (this.utilsService.role === Role.STUDENT) {
       this.isTeacher = false;
+      //Colecciones asignadas al estudiante
       this.collectionService.getMyCollections().subscribe(
         ((collections: Array<CollectionCard>) => {
           this.collections = collections;
@@ -106,7 +108,7 @@ export class CollectionsComponent implements OnInit {
       }
   }
     goToCollectionDetails(collectionCard) {
-
+      //Ir a la pagina de cromos de la cleccion
       if(this.isTeacher)
       {
 
@@ -141,6 +143,7 @@ export class CollectionsComponent implements OnInit {
 
 
   createCollection() {
+    //Abrir ventana para crear nueva colección
     const dialogRef = this.dialog.open(CreateCollectionComponent, {
       height: '600px',
       width: '800px',
@@ -154,8 +157,7 @@ export class CollectionsComponent implements OnInit {
   }
 
   assignCollectionToGroup(){
-
-    //
+    //Assignar colección a grupo de estudiantes
     if(!this.collectionSelected || !this.groupAssign){
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
      }

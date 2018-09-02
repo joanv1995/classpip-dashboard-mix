@@ -20,6 +20,7 @@ import { TranslateService } from 'ng2-translate';
   templateUrl: './collection.html',
   styleUrls: ['./collection.scss']
 })
+//Pagina de cromos de una colección de un profesor
 export class CollectionComponent implements OnInit {
   myControl = new FormControl();
   isTeacher: boolean = false;
@@ -65,6 +66,8 @@ export class CollectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/collection';
 
    this.sub = this.route.params.subscribe(params => {
@@ -74,7 +77,7 @@ export class CollectionComponent implements OnInit {
   });
 
 
-
+    //Tipos de asignación de cromos a estudiantes
     this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE1'));
     this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE2'));
     this.options.push(this.translateService.instant('CARDS.ASSIGNMENTTYPE3'));
@@ -83,6 +86,7 @@ export class CollectionComponent implements OnInit {
 
     if (this.utilsService.role === Role.TEACHER) {
       this.isTeacher = true;
+      //Obtenemos elobjeto colección a partir del id de la misma
       this.collectionService.getCollection(+this.collectionCardId).subscribe(
         ((collection: CollectionCard) => {
           this.myCollection = collection;
@@ -94,6 +98,7 @@ export class CollectionComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
+        //Obtenemos los cromos creados de la colección
       this.collectionService.getCollectionDetails(this.collectionCardId).subscribe(
         ((collectionCards: Array<Card>) => {
           this.collectionCards = collectionCards;
@@ -106,6 +111,7 @@ export class CollectionComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
 
+        //Grupos que tienen asignados esta colección
        this.collectionService.getAssignedGroups(this.collectionCardId).subscribe(
           ((groups: Array<Group>) => {
             this.collectionGroups = groups;
@@ -128,7 +134,7 @@ export class CollectionComponent implements OnInit {
 
  public createCard() {
 
-
+    //Abrir ventana de crear nuevo cromo
       let dialogRef = this.dialog.open(CreateCardComponent, {
         height: '600px',
         width: '800px',
@@ -142,6 +148,7 @@ export class CollectionComponent implements OnInit {
 
   }
  public deleteCard() {
+   //Eliminar cromo
     if(!this.cardId)
     {
       this.alertService.show(this.translateService.instant('CARDS.NOTSELECTED'));
@@ -163,6 +170,9 @@ export class CollectionComponent implements OnInit {
 
   }
   public showStudents(){
+    //Mostrar estudiantes de alguno de los grupos que
+    // tienen asignados esta colección para
+    // asignarle cromos
 
     if(this.groupSelected)
     {
@@ -192,6 +202,7 @@ export class CollectionComponent implements OnInit {
   }
   public assignCardsToStudent(){
 
+    //Assignar cromos al estudiante
     if(this.optionType)
     {
     switch (this.optionType){
@@ -337,6 +348,7 @@ export class CollectionComponent implements OnInit {
 
     }
   }
+  //Creación de un numero random para  asignar cromos aletorios
   public randomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
   }
